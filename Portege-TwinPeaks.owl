@@ -1,0 +1,1258 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://example.org/dream-ontology#"
+     xml:base="http://example.org/dream-ontology"
+     xmlns:sh="http://www.w3.org/ns/shacl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://example.org/dream-ontology">
+        <competencyQuestion>Under CooperDreamTheory, what RealityStatus is assigned to BOB?</competencyQuestion>
+        <competencyQuestion>Where do two theories disagree on the RealityStatus of the same narrative entity?</competencyQuestion>
+        <competencyQuestion>Which claims are about LauraMurderEvent?</competencyQuestion>
+        <competencyQuestion>Which claims are asserted by each theory?</competencyQuestion>
+        <competencyQuestion>Which claims identify a dreamer, and who is the dreamer?</competencyQuestion>
+        <competencyQuestion>Which entities are assigned projection in any theory?</competencyQuestion>
+        <competencyQuestion>Which entities are uncertain under RealityOverlapTheory?</competencyQuestion>
+        <competencyQuestion>Which theories classify TwinPeaksTown as dream?</competencyQuestion>
+        <rdfs:comment>This ontology models interpretive theories about Twin Peaks by separating narrative entities (Person, Place, Event, Realm) from theory-scoped claims. A Theory asserts one or more Claims. Each Claim isAbout a NarrativeEntity and may assign a RealityStatus or specify a dreamer (DreamerClaim). The design supports competing interpretations without forcing a single global truth.</rdfs:comment>
+        <owl:versionInfo>v1.0</owl:versionInfo>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://example.org/dream-ontology#competencyQuestion -->
+
+    <owl:AnnotationProperty rdf:about="http://example.org/dream-ontology#competencyQuestion">
+        <rdfs:comment>Competency questions the ontology should be able to answer.</rdfs:comment>
+        <rdfs:label>competency question</rdfs:label>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://www.w3.org/ns/shacl#class -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/ns/shacl#class"/>
+    
+
+
+    <!-- http://www.w3.org/ns/shacl#maxCount -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/ns/shacl#maxCount"/>
+    
+
+
+    <!-- http://www.w3.org/ns/shacl#minCount -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/ns/shacl#minCount"/>
+    
+
+
+    <!-- http://www.w3.org/ns/shacl#path -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/ns/shacl#path"/>
+    
+
+
+    <!-- http://www.w3.org/ns/shacl#property -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/ns/shacl#property"/>
+    
+
+
+    <!-- http://www.w3.org/ns/shacl#targetClass -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/ns/shacl#targetClass"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://example.org/dream-ontology#asserts -->
+
+    <owl:ObjectProperty rdf:about="http://example.org/dream-ontology#asserts">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/dream-ontology#Theory"/>
+        <rdfs:range rdf:resource="http://example.org/dream-ontology#Claim"/>
+        <rdfs:comment>Links a Theory to the Claims it asserts.</rdfs:comment>
+        <rdfs:label>asserts</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://example.org/dream-ontology#assignsStatus -->
+
+    <owl:ObjectProperty rdf:about="http://example.org/dream-ontology#assignsStatus">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/dream-ontology#RealityStatusClaim"/>
+        <rdfs:range rdf:resource="http://example.org/dream-ontology#RealityStatus"/>
+        <rdfs:comment>Links a RealityStatusClaim to a RealityStatus value it assigns.</rdfs:comment>
+        <rdfs:label>assigns status</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://example.org/dream-ontology#hasDreamer -->
+
+    <owl:ObjectProperty rdf:about="http://example.org/dream-ontology#hasDreamer">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/dream-ontology#DreamerClaim"/>
+        <rdfs:range rdf:resource="http://example.org/dream-ontology#Person"/>
+        <rdfs:comment>Links a DreamerClaim to the Person who is asserted to be the dreamer.</rdfs:comment>
+        <rdfs:label>has dreamer</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://example.org/dream-ontology#isAbout -->
+
+    <owl:ObjectProperty rdf:about="http://example.org/dream-ontology#isAbout">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AsymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="http://example.org/dream-ontology#Claim"/>
+        <rdfs:range rdf:resource="http://example.org/dream-ontology#NarrativeEntity"/>
+        <rdfs:comment>Links a Claim to the NarrativeEntity it concerns.</rdfs:comment>
+        <rdfs:label>is about</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://example.org/dream-ontology#ruleCategory -->
+
+    <owl:DatatypeProperty rdf:about="http://example.org/dream-ontology#ruleCategory">
+        <rdfs:domain rdf:resource="http://example.org/dream-ontology#TheoryRuleClaim"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Category label for a theory rule claim.</rdfs:comment>
+        <rdfs:label>rule category</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://example.org/dream-ontology#ruleText -->
+
+    <owl:DatatypeProperty rdf:about="http://example.org/dream-ontology#ruleText">
+        <rdfs:domain rdf:resource="http://example.org/dream-ontology#TheoryRuleClaim"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Human-readable text of a theory rule claim.</rdfs:comment>
+        <rdfs:label>rule text</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://example.org/dream-ontology#BinaryStatusClaim -->
+
+    <owl:Class rdf:about="http://example.org/dream-ontology#BinaryStatusClaim">
+        <rdfs:subClassOf rdf:resource="http://example.org/dream-ontology#RealityStatusClaim"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://example.org/dream-ontology#assignsStatus"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://example.org/dream-ontology#RealityStatus"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="http://example.org/dream-ontology#HybridStatusClaim"/>
+        <owl:disjointWith rdf:resource="http://example.org/dream-ontology#StatusShiftClaim"/>
+        <rdfs:comment>Binary Status Claim is a concept in the ontology.</rdfs:comment>
+        <rdfs:label>binary status claim</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/dream-ontology#Claim -->
+
+    <owl:Class rdf:about="http://example.org/dream-ontology#Claim">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://example.org/dream-ontology#isAbout"/>
+                <owl:someValuesFrom rdf:resource="http://example.org/dream-ontology#NarrativeEntity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label>Claim</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/dream-ontology#CooperDream -->
+
+    <owl:Class rdf:about="http://example.org/dream-ontology#CooperDream">
+        <rdfs:subClassOf rdf:resource="http://example.org/dream-ontology#Theory"/>
+        <rdfs:comment>Cooper Dream is a specialized kind of Theory.</rdfs:comment>
+        <rdfs:label>cooper-dream</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/dream-ontology#DistributedDreamersClaim -->
+
+    <owl:Class rdf:about="http://example.org/dream-ontology#DistributedDreamersClaim">
+        <rdfs:subClassOf rdf:resource="http://example.org/dream-ontology#DreamerClaim"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://example.org/dream-ontology#hasDreamer"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://example.org/dream-ontology#Person"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="http://example.org/dream-ontology#SingleDreamerClaim"/>
+        <rdfs:comment>Distributed Dreamers Claim is a concept in the ontology.</rdfs:comment>
+        <rdfs:label>distributed dreamers claim</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/dream-ontology#DreamerClaim -->
+
+    <owl:Class rdf:about="http://example.org/dream-ontology#DreamerClaim">
+        <rdfs:subClassOf rdf:resource="http://example.org/dream-ontology#Claim"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://example.org/dream-ontology#hasDreamer"/>
+                <owl:someValuesFrom rdf:resource="http://example.org/dream-ontology#Person"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>Dreamer Claim is a specialized kind of Claim.</rdfs:comment>
+        <rdfs:label>dreamer claim</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/dream-ontology#DreamerExistenceClaim -->
+
+    <owl:Class rdf:about="http://example.org/dream-ontology#DreamerExistenceClaim">
+        <rdfs:subClassOf rdf:resource="http://example.org/dream-ontology#DreamerClaim"/>
+        <rdfs:comment>Dreamer Existence Claim is a concept in the ontology.</rdfs:comment>
+        <rdfs:label>dreamer existence claim</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/dream-ontology#Event -->
+
+    <owl:Class rdf:about="http://example.org/dream-ontology#Event">
+        <rdfs:subClassOf rdf:resource="http://example.org/dream-ontology#NarrativeEntity"/>
+        <owl:disjointWith rdf:resource="http://example.org/dream-ontology#Person"/>
+        <owl:disjointWith rdf:resource="http://example.org/dream-ontology#Place"/>
+        <owl:disjointWith rdf:resource="http://example.org/dream-ontology#Realm"/>
+        <rdfs:comment>Event is a specialized kind of Narrative Entity.</rdfs:comment>
+        <rdfs:label>event</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/dream-ontology#HybridStatusClaim -->
+
+    <owl:Class rdf:about="http://example.org/dream-ontology#HybridStatusClaim">
+        <rdfs:subClassOf rdf:resource="http://example.org/dream-ontology#RealityStatusClaim"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://example.org/dream-ontology#assignsStatus"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://example.org/dream-ontology#RealityStatus"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="http://example.org/dream-ontology#StatusShiftClaim"/>
+        <rdfs:comment>Hybrid Status Claim is a concept in the ontology.</rdfs:comment>
+        <rdfs:label>hybrid status claim</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/dream-ontology#LauraDream -->
+
+    <owl:Class rdf:about="http://example.org/dream-ontology#LauraDream">
+        <rdfs:subClassOf rdf:resource="http://example.org/dream-ontology#Theory"/>
+        <rdfs:comment>Laura Dream is a specialized kind of Theory.</rdfs:comment>
+        <rdfs:label>laura-dream</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/dream-ontology#NarrativeEntity -->
+
+    <owl:Class rdf:about="http://example.org/dream-ontology#NarrativeEntity">
+        <rdfs:label>Narrative entity</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/dream-ontology#Person -->
+
+    <owl:Class rdf:about="http://example.org/dream-ontology#Person">
+        <rdfs:subClassOf rdf:resource="http://example.org/dream-ontology#NarrativeEntity"/>
+        <owl:disjointWith rdf:resource="http://example.org/dream-ontology#Place"/>
+        <owl:disjointWith rdf:resource="http://example.org/dream-ontology#Realm"/>
+        <rdfs:comment>Person is a specialized kind of Narrative Entity.</rdfs:comment>
+        <rdfs:label>person</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/dream-ontology#Place -->
+
+    <owl:Class rdf:about="http://example.org/dream-ontology#Place">
+        <rdfs:subClassOf rdf:resource="http://example.org/dream-ontology#NarrativeEntity"/>
+        <owl:disjointWith rdf:resource="http://example.org/dream-ontology#Realm"/>
+        <rdfs:comment>Place is a specialized kind of Narrative Entity.</rdfs:comment>
+        <rdfs:label>place</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/dream-ontology#RealityOverlap -->
+
+    <owl:Class rdf:about="http://example.org/dream-ontology#RealityOverlap">
+        <rdfs:subClassOf rdf:resource="http://example.org/dream-ontology#Theory"/>
+        <rdfs:comment>Reality Overlap is a specialized kind of Theory.</rdfs:comment>
+        <rdfs:label>reality overlap</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/dream-ontology#RealityStatus -->
+
+    <owl:Class rdf:about="http://example.org/dream-ontology#RealityStatus">
+        <rdfs:label>Reality status</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/dream-ontology#RealityStatusClaim -->
+
+    <owl:Class rdf:about="http://example.org/dream-ontology#RealityStatusClaim">
+        <rdfs:subClassOf rdf:resource="http://example.org/dream-ontology#Claim"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://example.org/dream-ontology#assignsStatus"/>
+                <owl:someValuesFrom rdf:resource="http://example.org/dream-ontology#RealityStatus"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>Reality Status Claim is a specialized kind of Claim.</rdfs:comment>
+        <rdfs:label>reality status claim</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/dream-ontology#Realm -->
+
+    <owl:Class rdf:about="http://example.org/dream-ontology#Realm">
+        <rdfs:subClassOf rdf:resource="http://example.org/dream-ontology#NarrativeEntity"/>
+        <rdfs:comment>Realm is a specialized kind of Narrative Entity.</rdfs:comment>
+        <rdfs:label>realm</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/dream-ontology#SingleDreamerClaim -->
+
+    <owl:Class rdf:about="http://example.org/dream-ontology#SingleDreamerClaim">
+        <rdfs:subClassOf rdf:resource="http://example.org/dream-ontology#DreamerClaim"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://example.org/dream-ontology#hasDreamer"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://example.org/dream-ontology#Person"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>Single Dreamer Claim is a concept in the ontology.</rdfs:comment>
+        <rdfs:label>single dreamer claim</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/dream-ontology#StatusShiftClaim -->
+
+    <owl:Class rdf:about="http://example.org/dream-ontology#StatusShiftClaim">
+        <rdfs:subClassOf rdf:resource="http://example.org/dream-ontology#RealityStatusClaim"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://example.org/dream-ontology#assignsStatus"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://example.org/dream-ontology#RealityStatus"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>Status Shift Claim is a concept in the ontology.</rdfs:comment>
+        <rdfs:label>status shift claim</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/dream-ontology#Theory -->
+
+    <owl:Class rdf:about="http://example.org/dream-ontology#Theory">
+        <rdfs:label>Theory</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/dream-ontology#TheoryRuleClaim -->
+
+    <owl:Class rdf:about="http://example.org/dream-ontology#TheoryRuleClaim">
+        <rdfs:subClassOf rdf:resource="http://example.org/dream-ontology#Claim"/>
+        <rdfs:comment>Theory Rule Claim is a specialized kind of Claim.</rdfs:comment>
+        <rdfs:label>theory rule claim</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/dream-ontology#dream -->
+
+    <owl:Class rdf:about="http://example.org/dream-ontology#dream">
+        <rdfs:subClassOf rdf:resource="http://example.org/dream-ontology#RealityStatus"/>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/dream-ontology#non-existant -->
+
+    <owl:Class rdf:about="http://example.org/dream-ontology#non-existant">
+        <rdfs:subClassOf rdf:resource="http://example.org/dream-ontology#RealityStatus"/>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/dream-ontology#projection -->
+
+    <owl:Class rdf:about="http://example.org/dream-ontology#projection">
+        <rdfs:subClassOf rdf:resource="http://example.org/dream-ontology#RealityStatus"/>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/dream-ontology#real -->
+
+    <owl:Class rdf:about="http://example.org/dream-ontology#real">
+        <rdfs:subClassOf rdf:resource="http://example.org/dream-ontology#RealityStatus"/>
+    </owl:Class>
+    
+
+
+    <!-- http://example.org/dream-ontology#uncertain -->
+
+    <owl:Class rdf:about="http://example.org/dream-ontology#uncertain">
+        <rdfs:subClassOf rdf:resource="http://example.org/dream-ontology#RealityStatus"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://example.org/dream-ontology#BOB -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#BOB">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#Person"/>
+        <rdfs:comment>Individual of class Person.</rdfs:comment>
+        <rdfs:label>BOB</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#CD_BOB_StatusClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LD_BOB_StatusClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#RO_BOB_StatusClaim"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#BlackLodge -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#BlackLodge">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#Realm"/>
+        <rdfs:comment>Individual of class Realm.</rdfs:comment>
+        <rdfs:label>Black Lodge</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#CD_BlackLodge_StatusClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LD_BlackLodge_StatusClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#RO_BlackLodge_StatusClaim"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#CD_BOB_StatusClaim -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#CD_BOB_StatusClaim">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#RealityStatusClaim"/>
+        <assignsStatus rdf:resource="http://example.org/dream-ontology#dream"/>
+        <isAbout rdf:resource="http://example.org/dream-ontology#BOB"/>
+        <rdfs:comment>Individual of class RealityStatusClaim.</rdfs:comment>
+        <rdfs:label>CD: BOB Status Claim</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#BOB"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#CooperDreamTheory"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#CD_BlackLodge_StatusClaim -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#CD_BlackLodge_StatusClaim">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#RealityStatusClaim"/>
+        <assignsStatus rdf:resource="http://example.org/dream-ontology#dream"/>
+        <isAbout rdf:resource="http://example.org/dream-ontology#BlackLodge"/>
+        <rdfs:comment>Individual of class RealityStatusClaim.</rdfs:comment>
+        <rdfs:label>CD: Black Lodge Status Claim</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#BlackLodge"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#CooperDreamTheory"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#CD_Cooper_SingleDreamerClaim -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#CD_Cooper_SingleDreamerClaim">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#DreamerClaim"/>
+        <rdf:type rdf:resource="http://example.org/dream-ontology#SingleDreamerClaim"/>
+        <hasDreamer rdf:resource="http://example.org/dream-ontology#DaleCooper"/>
+        <isAbout rdf:resource="http://example.org/dream-ontology#DaleCooper"/>
+        <rdfs:comment>Individual of class SingleDreamerClaim.</rdfs:comment>
+        <rdfs:label>CD: Cooper Single Dreamer Claim</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#CooperDreamTheory"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#DaleCooper"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#CD_Cooper_StatusClaim -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#CD_Cooper_StatusClaim">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#HybridStatusClaim"/>
+        <assignsStatus rdf:resource="http://example.org/dream-ontology#projection"/>
+        <assignsStatus rdf:resource="http://example.org/dream-ontology#real"/>
+        <isAbout rdf:resource="http://example.org/dream-ontology#DaleCooper"/>
+        <rdfs:comment>Individual of class HybridStatusClaim.</rdfs:comment>
+        <rdfs:label>CD: Cooper Status Claim</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#CooperDreamTheory"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#DaleCooper"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#CD_Doppelganger_StatusShiftClaim -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#CD_Doppelganger_StatusShiftClaim">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#StatusShiftClaim"/>
+        <assignsStatus rdf:resource="http://example.org/dream-ontology#dream"/>
+        <assignsStatus rdf:resource="http://example.org/dream-ontology#real"/>
+        <isAbout rdf:resource="http://example.org/dream-ontology#CooperDoppelgangerEncounterEvent"/>
+        <rdfs:comment>Individual of class StatusShiftClaim.</rdfs:comment>
+        <rdfs:label>CD: Doppelganger Status Shift Claim</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#CooperDoppelgangerEncounterEvent"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#CooperDreamTheory"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#CD_Laura_StatusClaim -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#CD_Laura_StatusClaim">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#RealityStatusClaim"/>
+        <assignsStatus rdf:resource="http://example.org/dream-ontology#dream"/>
+        <isAbout rdf:resource="http://example.org/dream-ontology#LauraPalmer"/>
+        <rdfs:comment>Individual of class RealityStatusClaim.</rdfs:comment>
+        <rdfs:label>CD: Laura Status Claim</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#CooperDreamTheory"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LauraPalmer"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#CD_Leland_StatusClaim -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#CD_Leland_StatusClaim">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#RealityStatusClaim"/>
+        <assignsStatus rdf:resource="http://example.org/dream-ontology#projection"/>
+        <isAbout rdf:resource="http://example.org/dream-ontology#LelandPalmer"/>
+        <rdfs:comment>Individual of class RealityStatusClaim.</rdfs:comment>
+        <rdfs:label>CD: Leland Status Claim</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#CooperDreamTheory"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LelandPalmer"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#CD_Murder_StatusClaim -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#CD_Murder_StatusClaim">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#RealityStatusClaim"/>
+        <assignsStatus rdf:resource="http://example.org/dream-ontology#dream"/>
+        <isAbout rdf:resource="http://example.org/dream-ontology#LauraMurderEvent"/>
+        <rdfs:comment>Individual of class RealityStatusClaim.</rdfs:comment>
+        <rdfs:label>CD: Murder Status Claim</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#CooperDreamTheory"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LauraMurderEvent"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#CD_Rule_01 -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#CD_Rule_01">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#Claim"/>
+        <rdf:type rdf:resource="http://example.org/dream-ontology#TheoryRuleClaim"/>
+        <ruleCategory>ContradictionHandling</ruleCategory>
+        <ruleText>Inconsistencies and identity splits are interpreted as dream distortions rather than logical errors</ruleText>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#CD_Rule_02 -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#CD_Rule_02">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#Claim"/>
+        <rdf:type rdf:resource="http://example.org/dream-ontology#TheoryRuleClaim"/>
+        <ruleCategory>TemporalAssumptions</ruleCategory>
+        <ruleText>Temporal instability, looping, and fragmented continuity are natural consequences of dream-based narration.</ruleText>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#CD_TwinPeaks_StatusClaim -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#CD_TwinPeaks_StatusClaim">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#RealityStatusClaim"/>
+        <assignsStatus rdf:resource="http://example.org/dream-ontology#dream"/>
+        <isAbout rdf:resource="http://example.org/dream-ontology#TwinPeaksTown"/>
+        <rdfs:comment>Individual of class RealityStatusClaim.</rdfs:comment>
+        <rdfs:label>CD: Twin Peaks Status Claim</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#CooperDreamTheory"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#TwinPeaksTown"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#CooperDoppelgangerEncounterEvent -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#CooperDoppelgangerEncounterEvent">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#Event"/>
+        <rdfs:comment>Individual of class Event.</rdfs:comment>
+        <rdfs:label>Cooper Doppelganger Encounter Event</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#CD_Doppelganger_StatusShiftClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LD_Doppelganger_StatusClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#RO_Doppelganger_HybridStatusClaim"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#CooperDreamTheory -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#CooperDreamTheory">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#CooperDream"/>
+        <rdf:type rdf:resource="http://example.org/dream-ontology#Theory"/>
+        <asserts rdf:resource="http://example.org/dream-ontology#CD_BOB_StatusClaim"/>
+        <asserts rdf:resource="http://example.org/dream-ontology#CD_BlackLodge_StatusClaim"/>
+        <asserts rdf:resource="http://example.org/dream-ontology#CD_Cooper_SingleDreamerClaim"/>
+        <asserts rdf:resource="http://example.org/dream-ontology#CD_Cooper_StatusClaim"/>
+        <asserts rdf:resource="http://example.org/dream-ontology#CD_Doppelganger_StatusShiftClaim"/>
+        <asserts rdf:resource="http://example.org/dream-ontology#CD_Laura_StatusClaim"/>
+        <asserts rdf:resource="http://example.org/dream-ontology#CD_Leland_StatusClaim"/>
+        <asserts rdf:resource="http://example.org/dream-ontology#CD_Murder_StatusClaim"/>
+        <asserts rdf:resource="http://example.org/dream-ontology#CD_Rule_01"/>
+        <asserts rdf:resource="http://example.org/dream-ontology#CD_Rule_02"/>
+        <asserts rdf:resource="http://example.org/dream-ontology#CD_TwinPeaks_StatusClaim"/>
+        <rdfs:comment>Individual of class CooperDream.</rdfs:comment>
+        <rdfs:label>Cooper Dream Theory</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#CD_BOB_StatusClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#CD_BlackLodge_StatusClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#CD_Cooper_SingleDreamerClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#CD_Cooper_StatusClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#CD_Doppelganger_StatusShiftClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#CD_Laura_StatusClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#CD_Leland_StatusClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#CD_Murder_StatusClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#CD_TwinPeaks_StatusClaim"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#DaleCooper -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#DaleCooper">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#Person"/>
+        <rdfs:comment>Individual of class Person.</rdfs:comment>
+        <rdfs:label>Dale Cooper</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#CD_Cooper_SingleDreamerClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#CD_Cooper_StatusClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LD_Cooper_StatusClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#RO_Cooper_StatusClaim"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#LD_BOB_StatusClaim -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#LD_BOB_StatusClaim">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#HybridStatusClaim"/>
+        <assignsStatus rdf:resource="http://example.org/dream-ontology#non-existant"/>
+        <assignsStatus rdf:resource="http://example.org/dream-ontology#projection"/>
+        <isAbout rdf:resource="http://example.org/dream-ontology#BOB"/>
+        <rdfs:comment>Individual of class HybridStatusClaim.</rdfs:comment>
+        <rdfs:label>LD: BOB Status Claim</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#BOB"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LauraDreamTheory"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#LD_BlackLodge_StatusClaim -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#LD_BlackLodge_StatusClaim">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#RealityStatusClaim"/>
+        <assignsStatus rdf:resource="http://example.org/dream-ontology#dream"/>
+        <isAbout rdf:resource="http://example.org/dream-ontology#BlackLodge"/>
+        <rdfs:comment>Individual of class RealityStatusClaim.</rdfs:comment>
+        <rdfs:label>LD: Black Lodge Status Claim</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#BlackLodge"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LauraDreamTheory"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#LD_Cooper_StatusClaim -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#LD_Cooper_StatusClaim">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#RealityStatusClaim"/>
+        <assignsStatus rdf:resource="http://example.org/dream-ontology#projection"/>
+        <isAbout rdf:resource="http://example.org/dream-ontology#DaleCooper"/>
+        <rdfs:comment>Individual of class RealityStatusClaim.</rdfs:comment>
+        <rdfs:label>LD: Cooper Status Claim</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#DaleCooper"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LauraDreamTheory"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#LD_Doppelganger_StatusClaim -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#LD_Doppelganger_StatusClaim">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#RealityStatusClaim"/>
+        <assignsStatus rdf:resource="http://example.org/dream-ontology#dream"/>
+        <isAbout rdf:resource="http://example.org/dream-ontology#CooperDoppelgangerEncounterEvent"/>
+        <rdfs:comment>Individual of class RealityStatusClaim.</rdfs:comment>
+        <rdfs:label>LD: Doppelganger Status Claim</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#CooperDoppelgangerEncounterEvent"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LauraDreamTheory"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#LD_Laura_SingleDreamerClaim -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#LD_Laura_SingleDreamerClaim">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#DreamerClaim"/>
+        <rdf:type rdf:resource="http://example.org/dream-ontology#SingleDreamerClaim"/>
+        <hasDreamer rdf:resource="http://example.org/dream-ontology#LauraPalmer"/>
+        <rdfs:comment>Individual of class SingleDreamerClaim.</rdfs:comment>
+        <rdfs:label>LD: Laura Single Dreamer Claim</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LauraDreamTheory"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LauraPalmer"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#LD_Laura_StatusClaim -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#LD_Laura_StatusClaim">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#HybridStatusClaim"/>
+        <assignsStatus rdf:resource="http://example.org/dream-ontology#projection"/>
+        <assignsStatus rdf:resource="http://example.org/dream-ontology#real"/>
+        <isAbout rdf:resource="http://example.org/dream-ontology#LauraPalmer"/>
+        <rdfs:comment>Individual of class HybridStatusClaim.</rdfs:comment>
+        <rdfs:label>LD: Laura Status Claim</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LauraDreamTheory"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LauraPalmer"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#LD_Leland_StatusClaim -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#LD_Leland_StatusClaim">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#HybridStatusClaim"/>
+        <assignsStatus rdf:resource="http://example.org/dream-ontology#projection"/>
+        <assignsStatus rdf:resource="http://example.org/dream-ontology#real"/>
+        <isAbout rdf:resource="http://example.org/dream-ontology#LelandPalmer"/>
+        <rdfs:comment>Individual of class HybridStatusClaim.</rdfs:comment>
+        <rdfs:label>LD: Leland Status Claim</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LauraDreamTheory"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LelandPalmer"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#LD_Murder_StatusShiftClaim -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#LD_Murder_StatusShiftClaim">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#StatusShiftClaim"/>
+        <assignsStatus rdf:resource="http://example.org/dream-ontology#projection"/>
+        <isAbout rdf:resource="http://example.org/dream-ontology#LauraMurderEvent"/>
+        <rdfs:comment>Individual of class StatusShiftClaim.</rdfs:comment>
+        <rdfs:label>LD: Murder Status Shift Claim</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LauraDreamTheory"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LauraMurderEvent"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#LD_Rule_01 -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#LD_Rule_01">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#Claim"/>
+        <rdf:type rdf:resource="http://example.org/dream-ontology#TheoryRuleClaim"/>
+        <ruleCategory>ContradictionHandling</ruleCategory>
+        <ruleText>Apparent contradictions, repetitions, or inconsistencies are resolved as dream effects such as repression, substitution, or symbolic displacement.</ruleText>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#LD_Rule_02 -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#LD_Rule_02">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#Claim"/>
+        <rdf:type rdf:resource="http://example.org/dream-ontology#TheoryRuleClaim"/>
+        <ruleCategory>TemporalAssumptions</ruleCategory>
+        <ruleText>Time is non-linear and subjective; looping, forgetting, and narrative resets are expected features of the dream structure.</ruleText>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#LD_TwinPeaks_StatusClaim -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#LD_TwinPeaks_StatusClaim">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#HybridStatusClaim"/>
+        <assignsStatus rdf:resource="http://example.org/dream-ontology#uncertain"/>
+        <isAbout rdf:resource="http://example.org/dream-ontology#TwinPeaksTown"/>
+        <rdfs:comment>Individual of class HybridStatusClaim.</rdfs:comment>
+        <rdfs:label>LD: Twin Peaks Status Claim</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LauraDreamTheory"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#TwinPeaksTown"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#LauraDreamTheory -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#LauraDreamTheory">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#LauraDream"/>
+        <rdf:type rdf:resource="http://example.org/dream-ontology#Theory"/>
+        <asserts rdf:resource="http://example.org/dream-ontology#LD_BOB_StatusClaim"/>
+        <asserts rdf:resource="http://example.org/dream-ontology#LD_BlackLodge_StatusClaim"/>
+        <asserts rdf:resource="http://example.org/dream-ontology#LD_Cooper_StatusClaim"/>
+        <asserts rdf:resource="http://example.org/dream-ontology#LD_Doppelganger_StatusClaim"/>
+        <asserts rdf:resource="http://example.org/dream-ontology#LD_Laura_SingleDreamerClaim"/>
+        <asserts rdf:resource="http://example.org/dream-ontology#LD_Laura_StatusClaim"/>
+        <asserts rdf:resource="http://example.org/dream-ontology#LD_Leland_StatusClaim"/>
+        <asserts rdf:resource="http://example.org/dream-ontology#LD_Murder_StatusShiftClaim"/>
+        <asserts rdf:resource="http://example.org/dream-ontology#LD_Rule_01"/>
+        <asserts rdf:resource="http://example.org/dream-ontology#LD_Rule_02"/>
+        <asserts rdf:resource="http://example.org/dream-ontology#LD_TwinPeaks_StatusClaim"/>
+        <rdfs:comment>Individual of class LauraDream.</rdfs:comment>
+        <rdfs:label>Laura Dream Theory</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LD_BOB_StatusClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LD_BlackLodge_StatusClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LD_Cooper_StatusClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LD_Doppelganger_StatusClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LD_Laura_SingleDreamerClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LD_Laura_StatusClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LD_Leland_StatusClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LD_Murder_StatusShiftClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LD_TwinPeaks_StatusClaim"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#LauraMurderEvent -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#LauraMurderEvent">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#Event"/>
+        <rdfs:comment>Individual of class Event.</rdfs:comment>
+        <rdfs:label>Laura Murder Event</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#CD_Murder_StatusClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LD_Murder_StatusShiftClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#RO_Murder_HybridStatusClaim"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#LauraPalmer -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#LauraPalmer">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#Person"/>
+        <rdfs:comment>Individual of class Person.</rdfs:comment>
+        <rdfs:label>Laura Palmer</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#CD_Laura_StatusClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LD_Laura_SingleDreamerClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LD_Laura_StatusClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#RO_Laura_StatusClaim"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#LelandPalmer -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#LelandPalmer">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#Person"/>
+        <rdfs:comment>Individual of class Person.</rdfs:comment>
+        <rdfs:label>Leland Palmer</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#CD_Leland_StatusClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LD_Leland_StatusClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#RO_Leland_StatusClaim"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#RO_BOB_StatusClaim -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#RO_BOB_StatusClaim">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#HybridStatusClaim"/>
+        <assignsStatus rdf:resource="http://example.org/dream-ontology#dream"/>
+        <assignsStatus rdf:resource="http://example.org/dream-ontology#real"/>
+        <isAbout rdf:resource="http://example.org/dream-ontology#BOB"/>
+        <rdfs:comment>Individual of class HybridStatusClaim.</rdfs:comment>
+        <rdfs:label>RO: BOB Status Claim</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#BOB"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#RealityOverlapTheory"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#RO_BlackLodge_StatusClaim -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#RO_BlackLodge_StatusClaim">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#HybridStatusClaim"/>
+        <asserts rdf:resource="http://example.org/dream-ontology#RO_Rule_02"/>
+        <assignsStatus rdf:resource="http://example.org/dream-ontology#uncertain"/>
+        <isAbout rdf:resource="http://example.org/dream-ontology#BlackLodge"/>
+        <rdfs:comment>Individual of class HybridStatusClaim.</rdfs:comment>
+        <rdfs:label>RO: Black Lodge Status Claim</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#BlackLodge"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#RealityOverlapTheory"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#RO_Cooper_StatusClaim -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#RO_Cooper_StatusClaim">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#HybridStatusClaim"/>
+        <assignsStatus rdf:resource="http://example.org/dream-ontology#uncertain"/>
+        <isAbout rdf:resource="http://example.org/dream-ontology#DaleCooper"/>
+        <rdfs:comment>Individual of class HybridStatusClaim.</rdfs:comment>
+        <rdfs:label>RO: Cooper Status Claim</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#DaleCooper"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#RealityOverlapTheory"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#RO_Doppelganger_HybridStatusClaim -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#RO_Doppelganger_HybridStatusClaim">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#HybridStatusClaim"/>
+        <assignsStatus rdf:resource="http://example.org/dream-ontology#dream"/>
+        <assignsStatus rdf:resource="http://example.org/dream-ontology#real"/>
+        <isAbout rdf:resource="http://example.org/dream-ontology#CooperDoppelgangerEncounterEvent"/>
+        <rdfs:comment>Individual of class HybridStatusClaim.</rdfs:comment>
+        <rdfs:label>RO: Doppelganger Hybrid Status Claim</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#CooperDoppelgangerEncounterEvent"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#RealityOverlapTheory"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#RO_Laura_StatusClaim -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#RO_Laura_StatusClaim">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#HybridStatusClaim"/>
+        <assignsStatus rdf:resource="http://example.org/dream-ontology#uncertain"/>
+        <isAbout rdf:resource="http://example.org/dream-ontology#LauraPalmer"/>
+        <rdfs:comment>Individual of class HybridStatusClaim.</rdfs:comment>
+        <rdfs:label>RO: Laura Status Claim</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LauraPalmer"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#RealityOverlapTheory"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#RO_Leland_StatusClaim -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#RO_Leland_StatusClaim">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#HybridStatusClaim"/>
+        <assignsStatus rdf:resource="http://example.org/dream-ontology#real"/>
+        <assignsStatus rdf:resource="http://example.org/dream-ontology#uncertain"/>
+        <isAbout rdf:resource="http://example.org/dream-ontology#LelandPalmer"/>
+        <rdfs:comment>Individual of class HybridStatusClaim.</rdfs:comment>
+        <rdfs:label>RO: Leland Status Claim</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LelandPalmer"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#RealityOverlapTheory"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#RO_Murder_HybridStatusClaim -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#RO_Murder_HybridStatusClaim">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#HybridStatusClaim"/>
+        <assignsStatus rdf:resource="http://example.org/dream-ontology#dream"/>
+        <assignsStatus rdf:resource="http://example.org/dream-ontology#real"/>
+        <isAbout rdf:resource="http://example.org/dream-ontology#LauraMurderEvent"/>
+        <rdfs:comment>Individual of class HybridStatusClaim.</rdfs:comment>
+        <rdfs:label>RO: Murder Hybrid Status Claim</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LauraMurderEvent"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#RealityOverlapTheory"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#RO_Rule_01 -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#RO_Rule_01">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#Claim"/>
+        <rdf:type rdf:resource="http://example.org/dream-ontology#TheoryRuleClaim"/>
+        <ruleCategory>ContradictionHandling</ruleCategory>
+        <ruleText>Contradictions and paradoxes are meaningful features of the narrative rather than problems requiring resolution.</ruleText>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#RO_Rule_02 -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#RO_Rule_02">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#Claim"/>
+        <rdf:type rdf:resource="http://example.org/dream-ontology#TheoryRuleClaim"/>
+        <ruleCategory>TemporalAssumptions</ruleCategory>
+        <ruleText>Narrative time is not globally linear. While everyday sequences may appear chronological, dream–reality merging produces temporal instability, repetition, and discontinuity.</ruleText>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#RO_TwinPeaks_StatusClaim -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#RO_TwinPeaks_StatusClaim">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#HybridStatusClaim"/>
+        <assignsStatus rdf:resource="http://example.org/dream-ontology#dream"/>
+        <assignsStatus rdf:resource="http://example.org/dream-ontology#real"/>
+        <isAbout rdf:resource="http://example.org/dream-ontology#TwinPeaksTown"/>
+        <rdfs:comment>Individual of class HybridStatusClaim.</rdfs:comment>
+        <rdfs:label>RO: Twin Peaks Status Claim</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#RealityOverlapTheory"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#TwinPeaksTown"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#RealityOverlapTheory -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#RealityOverlapTheory">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#RealityOverlap"/>
+        <rdf:type rdf:resource="http://example.org/dream-ontology#Theory"/>
+        <asserts rdf:resource="http://example.org/dream-ontology#RO_BOB_StatusClaim"/>
+        <asserts rdf:resource="http://example.org/dream-ontology#RO_BlackLodge_StatusClaim"/>
+        <asserts rdf:resource="http://example.org/dream-ontology#RO_Cooper_StatusClaim"/>
+        <asserts rdf:resource="http://example.org/dream-ontology#RO_Doppelganger_HybridStatusClaim"/>
+        <asserts rdf:resource="http://example.org/dream-ontology#RO_Laura_StatusClaim"/>
+        <asserts rdf:resource="http://example.org/dream-ontology#RO_Leland_StatusClaim"/>
+        <asserts rdf:resource="http://example.org/dream-ontology#RO_Murder_HybridStatusClaim"/>
+        <asserts rdf:resource="http://example.org/dream-ontology#RO_Rule_01"/>
+        <asserts rdf:resource="http://example.org/dream-ontology#RO_Rule_02"/>
+        <asserts rdf:resource="http://example.org/dream-ontology#RO_TwinPeaks_StatusClaim"/>
+        <rdfs:comment>Individual of class RealityOverlap.</rdfs:comment>
+        <rdfs:label>Reality Overlap Theory</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#RO_BOB_StatusClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#RO_BlackLodge_StatusClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#RO_Cooper_StatusClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#RO_Doppelganger_HybridStatusClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#RO_Laura_StatusClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#RO_Leland_StatusClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#RO_Murder_HybridStatusClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#RO_TwinPeaks_StatusClaim"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#TwinPeaksTown -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#TwinPeaksTown">
+        <rdf:type rdf:resource="http://example.org/dream-ontology#Place"/>
+        <rdfs:comment>Individual of class Place.</rdfs:comment>
+        <rdfs:label>Twin Peaks Town</rdfs:label>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#CD_TwinPeaks_StatusClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LD_TwinPeaks_StatusClaim"/>
+        <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#RO_TwinPeaks_StatusClaim"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dream-ontology#dream -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#dream"/>
+    
+
+
+    <!-- http://example.org/dream-ontology#non-existant -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#non-existant"/>
+    
+
+
+    <!-- http://example.org/dream-ontology#projection -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#projection"/>
+    
+
+
+    <!-- http://example.org/dream-ontology#real -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#real"/>
+    
+
+
+    <!-- http://example.org/dream-ontology#uncertain -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#uncertain"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotations
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="http://example.org/dream-ontology#BinaryStatusClaimShape">
+        <sh:property>
+            <rdf:Description>
+                <sh:class rdf:resource="http://example.org/dream-ontology#RealityStatus"/>
+                <sh:maxCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:maxCount>
+                <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:minCount>
+                <sh:path rdf:resource="http://example.org/dream-ontology#assignsStatus"/>
+            </rdf:Description>
+        </sh:property>
+        <sh:targetClass rdf:resource="http://example.org/dream-ontology#BinaryStatusClaim"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://example.org/dream-ontology#ClaimAboutShape">
+        <sh:property>
+            <rdf:Description>
+                <sh:class rdf:resource="http://example.org/dream-ontology#NarrativeEntity"/>
+                <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:minCount>
+                <sh:path rdf:resource="http://example.org/dream-ontology#isAbout"/>
+            </rdf:Description>
+        </sh:property>
+        <sh:targetClass rdf:resource="http://example.org/dream-ontology#Claim"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://example.org/dream-ontology#DistributedDreamersClaimShape">
+        <sh:property>
+            <rdf:Description>
+                <sh:class rdf:resource="http://example.org/dream-ontology#Person"/>
+                <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</sh:minCount>
+                <sh:path rdf:resource="http://example.org/dream-ontology#hasDreamer"/>
+            </rdf:Description>
+        </sh:property>
+        <sh:targetClass rdf:resource="http://example.org/dream-ontology#DistributedDreamersClaim"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://example.org/dream-ontology#HybridStatusClaimShape">
+        <sh:property>
+            <rdf:Description>
+                <sh:class rdf:resource="http://example.org/dream-ontology#RealityStatus"/>
+                <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</sh:minCount>
+                <sh:path rdf:resource="http://example.org/dream-ontology#assignsStatus"/>
+            </rdf:Description>
+        </sh:property>
+        <sh:targetClass rdf:resource="http://example.org/dream-ontology#HybridStatusClaim"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://example.org/dream-ontology#SingleDreamerClaimShape">
+        <sh:property>
+            <rdf:Description>
+                <sh:class rdf:resource="http://example.org/dream-ontology#Person"/>
+                <sh:maxCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:maxCount>
+                <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:minCount>
+                <sh:path rdf:resource="http://example.org/dream-ontology#hasDreamer"/>
+            </rdf:Description>
+        </sh:property>
+        <sh:targetClass rdf:resource="http://example.org/dream-ontology#SingleDreamerClaim"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://example.org/dream-ontology#StatusShiftClaimShape">
+        <sh:property>
+            <rdf:Description>
+                <sh:class rdf:resource="http://example.org/dream-ontology#RealityStatus"/>
+                <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</sh:minCount>
+                <sh:path rdf:resource="http://example.org/dream-ontology#assignsStatus"/>
+            </rdf:Description>
+        </sh:property>
+        <sh:targetClass rdf:resource="http://example.org/dream-ontology#StatusShiftClaim"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://example.org/dream-ontology#dream">
+        <rdfs:comment>dream is a specialized kind of Reality Status.</rdfs:comment>
+        <rdfs:label>dream</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://example.org/dream-ontology#non-existant">
+        <rdfs:comment>non existant is a specialized kind of Reality Status.</rdfs:comment>
+        <rdfs:label>non-existant</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://example.org/dream-ontology#projection">
+        <rdfs:comment>projection is a specialized kind of Reality Status.</rdfs:comment>
+        <rdfs:label>projection</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://example.org/dream-ontology#real">
+        <rdfs:comment>real is a specialized kind of Reality Status.</rdfs:comment>
+        <rdfs:label>real</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://example.org/dream-ontology#uncertain">
+        <rdfs:comment>uncertain is a specialized kind of Reality Status.</rdfs:comment>
+        <rdfs:label>uncertain</rdfs:label>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
+

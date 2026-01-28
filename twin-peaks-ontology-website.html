@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Twin Peaks Ontology – Simple Interactive Viewer</title>
+  <style>
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+    header { padding:12px 14px; border-bottom:1px solid #ddd; position:sticky; top:0; background:#fff; }
+    .tabs { display:flex; gap:10px; flex-wrap:wrap; }
+    .tab { padding:8px 10px; border:1px solid #ddd; border-radius:10px; cursor:pointer; user-select:none; }
+    .tab.active { border-color:#111; }
+    main { display:grid; grid-template-columns: 320px 1fr; min-height: calc(100vh - 56px); }
+    aside { border-right:1px solid #ddd; padding:12px; }
+    section { padding:12px; }
+    input { width:100%; padding:10px; border:1px solid #ddd; border-radius:10px; }
+    .list { margin-top:10px; display:grid; gap:8px; }
+    .item { padding:10px; border:1px solid #ddd; border-radius:12px; cursor:pointer; }
+    .item:hover { background:#f7f7f7; }
+    .title { font-weight:700; }
+    .meta { color:#555; font-size:12px; margin-top:4px; }
+    .card { border:1px solid #ddd; border-radius:14px; padding:14px; }
+    h2 { margin:0 0 6px 0; }
+    .chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+    .chip { border:1px solid #ddd; padding:6px 10px; border-radius:999px; cursor:pointer; font-size:13px; }
+    .chip:hover { background:#f2f2f2; }
+    pre { white-space:pre; overflow:auto; padding:12px; border:1px solid #ddd; border-radius:12px; background:#fafafa; }
+    .small { color:#555; font-size:13px; }
+    @media (max-width: 900px) {
+      main { grid-template-columns: 1fr; }
+      aside { border-right:none; border-bottom:1px solid #ddd; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap; justify-content:space-between;">
+    <div><strong>Twin Peaks Ontology</strong> <span style="color:#666;">(simple viewer)</span></div>
+    <div class="tabs" id="tabs"></div>
+  </div>
+</header>
+
+<main>
+  <aside>
+    <input id="search" placeholder="Search in current tab…"/>
+    <div class="small" id="listLabel" style="margin-top:10px;"></div>
+    <div class="list" id="list"></div>
+  </aside>
+
+  <section>
+    <div class="card" id="detail"></div>
+  </section>
+</main>
+
+<script id="ontologyData" type="application/json">{"meta": {"source_owl": "dreamontology2-impressive-allinone-fixed-sparql.owl", "triple_count": 615, "class_count": 25, "object_property_count": 4, "data_property_count": 2, "individual_count": 48, "generated": "2026-01-28"}, "classes": [{"id": "do:BinaryStatusClaim", "label": "binary status claim", "comment": "Binary Status Claim is a concept in the ontology.", "uri": "http://example.org/dream-ontology#BinaryStatusClaim", "subClassOf": ["do:RealityStatusClaim"], "subClasses": []}, {"id": "do:Claim", "label": "Claim", "comment": "", "uri": "http://example.org/dream-ontology#Claim", "subClassOf": [], "subClasses": ["do:DreamerClaim", "do:RealityStatusClaim", "do:TheoryRuleClaim"]}, {"id": "do:CooperDream", "label": "cooper-dream", "comment": "Cooper Dream is a specialized kind of Theory.", "uri": "http://example.org/dream-ontology#CooperDream", "subClassOf": ["do:Theory"], "subClasses": []}, {"id": "do:DistributedDreamersClaim", "label": "distributed dreamers claim", "comment": "Distributed Dreamers Claim is a concept in the ontology.", "uri": "http://example.org/dream-ontology#DistributedDreamersClaim", "subClassOf": ["do:DreamerClaim"], "subClasses": []}, {"id": "do:dream", "label": "dream", "comment": "dream is a specialized kind of Reality Status.", "uri": "http://example.org/dream-ontology#dream", "subClassOf": ["do:RealityStatus"], "subClasses": []}, {"id": "do:DreamerClaim", "label": "dreamer claim", "comment": "Dreamer Claim is a specialized kind of Claim.", "uri": "http://example.org/dream-ontology#DreamerClaim", "subClassOf": ["do:Claim"], "subClasses": ["do:DistributedDreamersClaim", "do:DreamerExistenceClaim", "do:SingleDreamerClaim"]}, {"id": "do:DreamerExistenceClaim", "label": "dreamer existence claim", "comment": "Dreamer Existence Claim is a concept in the ontology.", "uri": "http://example.org/dream-ontology#DreamerExistenceClaim", "subClassOf": ["do:DreamerClaim"], "subClasses": []}, {"id": "do:Event", "label": "event", "comment": "Event is a specialized kind of Narrative Entity.", "uri": "http://example.org/dream-ontology#Event", "subClassOf": ["do:NarrativeEntity"], "subClasses": []}, {"id": "do:HybridStatusClaim", "label": "hybrid status claim", "comment": "Hybrid Status Claim is a concept in the ontology.", "uri": "http://example.org/dream-ontology#HybridStatusClaim", "subClassOf": ["do:RealityStatusClaim"], "subClasses": []}, {"id": "do:LauraDream", "label": "laura-dream", "comment": "Laura Dream is a specialized kind of Theory.", "uri": "http://example.org/dream-ontology#LauraDream", "subClassOf": ["do:Theory"], "subClasses": []}, {"id": "do:NarrativeEntity", "label": "Narrative entity", "comment": "", "uri": "http://example.org/dream-ontology#NarrativeEntity", "subClassOf": [], "subClasses": ["do:Event", "do:Person", "do:Place", "do:Realm"]}, {"id": "do:non-existant", "label": "non-existant", "comment": "non existant is a specialized kind of Reality Status.", "uri": "http://example.org/dream-ontology#non-existant", "subClassOf": ["do:RealityStatus"], "subClasses": []}, {"id": "do:Person", "label": "person", "comment": "Person is a specialized kind of Narrative Entity.", "uri": "http://example.org/dream-ontology#Person", "subClassOf": ["do:NarrativeEntity"], "subClasses": []}, {"id": "do:Place", "label": "place", "comment": "Place is a specialized kind of Narrative Entity.", "uri": "http://example.org/dream-ontology#Place", "subClassOf": ["do:NarrativeEntity"], "subClasses": []}, {"id": "do:projection", "label": "projection", "comment": "projection is a specialized kind of Reality Status.", "uri": "http://example.org/dream-ontology#projection", "subClassOf": ["do:RealityStatus"], "subClasses": []}, {"id": "do:real", "label": "real", "comment": "real is a specialized kind of Reality Status.", "uri": "http://example.org/dream-ontology#real", "subClassOf": ["do:RealityStatus"], "subClasses": []}, {"id": "do:RealityOverlap", "label": "reality overlap", "comment": "Reality Overlap is a specialized kind of Theory.", "uri": "http://example.org/dream-ontology#RealityOverlap", "subClassOf": ["do:Theory"], "subClasses": []}, {"id": "do:RealityStatus", "label": "Reality status", "comment": "", "uri": "http://example.org/dream-ontology#RealityStatus", "subClassOf": [], "subClasses": ["do:dream", "do:non-existant", "do:projection", "do:real", "do:uncertain"]}, {"id": "do:RealityStatusClaim", "label": "reality status claim", "comment": "Reality Status Claim is a specialized kind of Claim.", "uri": "http://example.org/dream-ontology#RealityStatusClaim", "subClassOf": ["do:Claim"], "subClasses": ["do:BinaryStatusClaim", "do:HybridStatusClaim", "do:StatusShiftClaim"]}, {"id": "do:Realm", "label": "realm", "comment": "Realm is a specialized kind of Narrative Entity.", "uri": "http://example.org/dream-ontology#Realm", "subClassOf": ["do:NarrativeEntity"], "subClasses": []}, {"id": "do:SingleDreamerClaim", "label": "single dreamer claim", "comment": "Single Dreamer Claim is a concept in the ontology.", "uri": "http://example.org/dream-ontology#SingleDreamerClaim", "subClassOf": ["do:DreamerClaim"], "subClasses": []}, {"id": "do:StatusShiftClaim", "label": "status shift claim", "comment": "Status Shift Claim is a concept in the ontology.", "uri": "http://example.org/dream-ontology#StatusShiftClaim", "subClassOf": ["do:RealityStatusClaim"], "subClasses": []}, {"id": "do:Theory", "label": "Theory", "comment": "", "uri": "http://example.org/dream-ontology#Theory", "subClassOf": [], "subClasses": ["do:CooperDream", "do:LauraDream", "do:RealityOverlap"]}, {"id": "do:TheoryRuleClaim", "label": "theory rule claim", "comment": "Theory Rule Claim is a specialized kind of Claim.", "uri": "http://example.org/dream-ontology#TheoryRuleClaim", "subClassOf": ["do:Claim"], "subClasses": []}, {"id": "do:uncertain", "label": "uncertain", "comment": "uncertain is a specialized kind of Reality Status.", "uri": "http://example.org/dream-ontology#uncertain", "subClassOf": ["do:RealityStatus"], "subClasses": []}], "properties": {"object": [{"id": "do:asserts", "label": "asserts", "comment": "Links a Theory to the Claims it asserts.", "uri": "http://example.org/dream-ontology#asserts"}, {"id": "do:assignsStatus", "label": "assigns status", "comment": "Links a RealityStatusClaim to a RealityStatus value it assigns.", "uri": "http://example.org/dream-ontology#assignsStatus"}, {"id": "do:hasDreamer", "label": "has dreamer", "comment": "Links a DreamerClaim to the Person who is asserted to be the dreamer.", "uri": "http://example.org/dream-ontology#hasDreamer"}, {"id": "do:isAbout", "label": "is about", "comment": "Links a Claim to the NarrativeEntity it concerns.", "uri": "http://example.org/dream-ontology#isAbout"}], "data": [{"id": "do:ruleCategory", "label": "rule category", "comment": "Category label for a theory rule claim.", "uri": "http://example.org/dream-ontology#ruleCategory"}, {"id": "do:ruleText", "label": "rule text", "comment": "Human-readable text of a theory rule claim.", "uri": "http://example.org/dream-ontology#ruleText"}]}, "individuals": [{"id": "do:BlackLodge", "label": "Black Lodge", "comment": "Individual of class Realm.", "uri": "http://example.org/dream-ontology#BlackLodge", "types": ["do:Realm"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:BOB", "label": "BOB", "comment": "Individual of class Person.", "uri": "http://example.org/dream-ontology#BOB", "types": ["do:Person"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:CD_BlackLodge_StatusClaim", "label": "CD: Black Lodge Status Claim", "comment": "Individual of class RealityStatusClaim.", "uri": "http://example.org/dream-ontology#CD_BlackLodge_StatusClaim", "types": ["do:RealityStatusClaim"], "asserts": [], "isAbout": ["do:BlackLodge"], "assignsStatus": ["do:dream"], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:CD_BOB_StatusClaim", "label": "CD: BOB Status Claim", "comment": "Individual of class RealityStatusClaim.", "uri": "http://example.org/dream-ontology#CD_BOB_StatusClaim", "types": ["do:RealityStatusClaim"], "asserts": [], "isAbout": ["do:BOB"], "assignsStatus": ["do:dream"], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:CD_Cooper_SingleDreamerClaim", "label": "CD: Cooper Single Dreamer Claim", "comment": "Individual of class SingleDreamerClaim.", "uri": "http://example.org/dream-ontology#CD_Cooper_SingleDreamerClaim", "types": ["do:DreamerClaim", "do:SingleDreamerClaim"], "asserts": [], "isAbout": ["do:DaleCooper"], "assignsStatus": [], "hasDreamer": ["do:DaleCooper"], "ruleCategory": [], "ruleText": []}, {"id": "do:CD_Cooper_StatusClaim", "label": "CD: Cooper Status Claim", "comment": "Individual of class HybridStatusClaim.", "uri": "http://example.org/dream-ontology#CD_Cooper_StatusClaim", "types": ["do:HybridStatusClaim"], "asserts": [], "isAbout": ["do:DaleCooper"], "assignsStatus": ["do:projection", "do:real"], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:CD_Doppelganger_StatusShiftClaim", "label": "CD: Doppelganger Status Shift Claim", "comment": "Individual of class StatusShiftClaim.", "uri": "http://example.org/dream-ontology#CD_Doppelganger_StatusShiftClaim", "types": ["do:StatusShiftClaim"], "asserts": [], "isAbout": ["do:CooperDoppelgangerEncounterEvent"], "assignsStatus": ["do:dream", "do:real"], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:CD_Laura_StatusClaim", "label": "CD: Laura Status Claim", "comment": "Individual of class RealityStatusClaim.", "uri": "http://example.org/dream-ontology#CD_Laura_StatusClaim", "types": ["do:RealityStatusClaim"], "asserts": [], "isAbout": ["do:LauraPalmer"], "assignsStatus": ["do:dream"], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:CD_Leland_StatusClaim", "label": "CD: Leland Status Claim", "comment": "Individual of class RealityStatusClaim.", "uri": "http://example.org/dream-ontology#CD_Leland_StatusClaim", "types": ["do:RealityStatusClaim"], "asserts": [], "isAbout": ["do:LelandPalmer"], "assignsStatus": ["do:projection"], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:CD_Murder_StatusClaim", "label": "CD: Murder Status Claim", "comment": "Individual of class RealityStatusClaim.", "uri": "http://example.org/dream-ontology#CD_Murder_StatusClaim", "types": ["do:RealityStatusClaim"], "asserts": [], "isAbout": ["do:LauraMurderEvent"], "assignsStatus": ["do:dream"], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:CD_TwinPeaks_StatusClaim", "label": "CD: Twin Peaks Status Claim", "comment": "Individual of class RealityStatusClaim.", "uri": "http://example.org/dream-ontology#CD_TwinPeaks_StatusClaim", "types": ["do:RealityStatusClaim"], "asserts": [], "isAbout": ["do:TwinPeaksTown"], "assignsStatus": ["do:dream"], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:CD_Rule_01", "label": "CD_Rule_01", "comment": "", "uri": "http://example.org/dream-ontology#CD_Rule_01", "types": ["do:Claim", "do:TheoryRuleClaim"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": ["ContradictionHandling"], "ruleText": ["Inconsistencies and identity splits are interpreted as dream distortions rather than logical errors"]}, {"id": "do:CD_Rule_02", "label": "CD_Rule_02", "comment": "", "uri": "http://example.org/dream-ontology#CD_Rule_02", "types": ["do:Claim", "do:TheoryRuleClaim"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": ["TemporalAssumptions"], "ruleText": ["Temporal instability, looping, and fragmented continuity are natural consequences of dream-based narration."]}, {"id": "do:CooperDoppelgangerEncounterEvent", "label": "Cooper Doppelganger Encounter Event", "comment": "Individual of class Event.", "uri": "http://example.org/dream-ontology#CooperDoppelgangerEncounterEvent", "types": ["do:Event"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:CooperDreamTheory", "label": "Cooper Dream Theory", "comment": "Individual of class CooperDream.", "uri": "http://example.org/dream-ontology#CooperDreamTheory", "types": ["do:CooperDream", "do:Theory"], "asserts": ["do:CD_BOB_StatusClaim", "do:CD_BlackLodge_StatusClaim", "do:CD_Cooper_SingleDreamerClaim", "do:CD_Cooper_StatusClaim", "do:CD_Doppelganger_StatusShiftClaim", "do:CD_Laura_StatusClaim", "do:CD_Leland_StatusClaim", "do:CD_Murder_StatusClaim", "do:CD_Rule_01", "do:CD_Rule_02", "do:CD_TwinPeaks_StatusClaim"], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:DaleCooper", "label": "Dale Cooper", "comment": "Individual of class Person.", "uri": "http://example.org/dream-ontology#DaleCooper", "types": ["do:Person"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:dream", "label": "dream", "comment": "dream is a specialized kind of Reality Status.", "uri": "http://example.org/dream-ontology#dream", "types": ["owl:Class"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:LauraDreamTheory", "label": "Laura Dream Theory", "comment": "Individual of class LauraDream.", "uri": "http://example.org/dream-ontology#LauraDreamTheory", "types": ["do:LauraDream", "do:Theory"], "asserts": ["do:LD_BOB_StatusClaim", "do:LD_BlackLodge_StatusClaim", "do:LD_Cooper_StatusClaim", "do:LD_Doppelganger_StatusClaim", "do:LD_Laura_SingleDreamerClaim", "do:LD_Laura_StatusClaim", "do:LD_Leland_StatusClaim", "do:LD_Murder_StatusShiftClaim", "do:LD_Rule_01", "do:LD_Rule_02", "do:LD_TwinPeaks_StatusClaim"], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:LauraMurderEvent", "label": "Laura Murder Event", "comment": "Individual of class Event.", "uri": "http://example.org/dream-ontology#LauraMurderEvent", "types": ["do:Event"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:LauraPalmer", "label": "Laura Palmer", "comment": "Individual of class Person.", "uri": "http://example.org/dream-ontology#LauraPalmer", "types": ["do:Person"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:LD_BlackLodge_StatusClaim", "label": "LD: Black Lodge Status Claim", "comment": "Individual of class RealityStatusClaim.", "uri": "http://example.org/dream-ontology#LD_BlackLodge_StatusClaim", "types": ["do:RealityStatusClaim"], "asserts": [], "isAbout": ["do:BlackLodge"], "assignsStatus": ["do:dream"], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:LD_BOB_StatusClaim", "label": "LD: BOB Status Claim", "comment": "Individual of class HybridStatusClaim.", "uri": "http://example.org/dream-ontology#LD_BOB_StatusClaim", "types": ["do:HybridStatusClaim"], "asserts": [], "isAbout": ["do:BOB"], "assignsStatus": ["do:non-existant", "do:projection"], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:LD_Cooper_StatusClaim", "label": "LD: Cooper Status Claim", "comment": "Individual of class RealityStatusClaim.", "uri": "http://example.org/dream-ontology#LD_Cooper_StatusClaim", "types": ["do:RealityStatusClaim"], "asserts": [], "isAbout": ["do:DaleCooper"], "assignsStatus": ["do:projection"], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:LD_Doppelganger_StatusClaim", "label": "LD: Doppelganger Status Claim", "comment": "Individual of class RealityStatusClaim.", "uri": "http://example.org/dream-ontology#LD_Doppelganger_StatusClaim", "types": ["do:RealityStatusClaim"], "asserts": [], "isAbout": ["do:CooperDoppelgangerEncounterEvent"], "assignsStatus": ["do:dream"], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:LD_Laura_SingleDreamerClaim", "label": "LD: Laura Single Dreamer Claim", "comment": "Individual of class SingleDreamerClaim.", "uri": "http://example.org/dream-ontology#LD_Laura_SingleDreamerClaim", "types": ["do:DreamerClaim", "do:SingleDreamerClaim"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": ["do:LauraPalmer"], "ruleCategory": [], "ruleText": []}, {"id": "do:LD_Laura_StatusClaim", "label": "LD: Laura Status Claim", "comment": "Individual of class HybridStatusClaim.", "uri": "http://example.org/dream-ontology#LD_Laura_StatusClaim", "types": ["do:HybridStatusClaim"], "asserts": [], "isAbout": ["do:LauraPalmer"], "assignsStatus": ["do:projection", "do:real"], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:LD_Leland_StatusClaim", "label": "LD: Leland Status Claim", "comment": "Individual of class HybridStatusClaim.", "uri": "http://example.org/dream-ontology#LD_Leland_StatusClaim", "types": ["do:HybridStatusClaim"], "asserts": [], "isAbout": ["do:LelandPalmer"], "assignsStatus": ["do:projection", "do:real"], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:LD_Murder_StatusShiftClaim", "label": "LD: Murder Status Shift Claim", "comment": "Individual of class StatusShiftClaim.", "uri": "http://example.org/dream-ontology#LD_Murder_StatusShiftClaim", "types": ["do:StatusShiftClaim"], "asserts": [], "isAbout": ["do:LauraMurderEvent"], "assignsStatus": ["do:projection"], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:LD_TwinPeaks_StatusClaim", "label": "LD: Twin Peaks Status Claim", "comment": "Individual of class HybridStatusClaim.", "uri": "http://example.org/dream-ontology#LD_TwinPeaks_StatusClaim", "types": ["do:HybridStatusClaim"], "asserts": [], "isAbout": ["do:TwinPeaksTown"], "assignsStatus": ["do:uncertain"], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:LD_Rule_01", "label": "LD_Rule_01", "comment": "", "uri": "http://example.org/dream-ontology#LD_Rule_01", "types": ["do:Claim", "do:TheoryRuleClaim"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": ["ContradictionHandling"], "ruleText": ["Apparent contradictions, repetitions, or inconsistencies are resolved as dream effects such as repression, substitution, or symbolic displacement."]}, {"id": "do:LD_Rule_02", "label": "LD_Rule_02", "comment": "", "uri": "http://example.org/dream-ontology#LD_Rule_02", "types": ["do:Claim", "do:TheoryRuleClaim"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": ["TemporalAssumptions"], "ruleText": ["Time is non-linear and subjective; looping, forgetting, and narrative resets are expected features of the dream structure."]}, {"id": "do:LelandPalmer", "label": "Leland Palmer", "comment": "Individual of class Person.", "uri": "http://example.org/dream-ontology#LelandPalmer", "types": ["do:Person"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:non-existant", "label": "non-existant", "comment": "non existant is a specialized kind of Reality Status.", "uri": "http://example.org/dream-ontology#non-existant", "types": ["owl:Class"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:projection", "label": "projection", "comment": "projection is a specialized kind of Reality Status.", "uri": "http://example.org/dream-ontology#projection", "types": ["owl:Class"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:real", "label": "real", "comment": "real is a specialized kind of Reality Status.", "uri": "http://example.org/dream-ontology#real", "types": ["owl:Class"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:RealityOverlapTheory", "label": "Reality Overlap Theory", "comment": "Individual of class RealityOverlap.", "uri": "http://example.org/dream-ontology#RealityOverlapTheory", "types": ["do:RealityOverlap", "do:Theory"], "asserts": ["do:RO_BOB_StatusClaim", "do:RO_BlackLodge_StatusClaim", "do:RO_Cooper_StatusClaim", "do:RO_Doppelganger_HybridStatusClaim", "do:RO_Laura_StatusClaim", "do:RO_Leland_StatusClaim", "do:RO_Murder_HybridStatusClaim", "do:RO_Rule_01", "do:RO_Rule_02", "do:RO_TwinPeaks_StatusClaim"], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:RO_BlackLodge_StatusClaim", "label": "RO: Black Lodge Status Claim", "comment": "Individual of class HybridStatusClaim.", "uri": "http://example.org/dream-ontology#RO_BlackLodge_StatusClaim", "types": ["do:HybridStatusClaim"], "asserts": ["do:RO_Rule_02"], "isAbout": ["do:BlackLodge"], "assignsStatus": ["do:uncertain"], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:RO_BOB_StatusClaim", "label": "RO: BOB Status Claim", "comment": "Individual of class HybridStatusClaim.", "uri": "http://example.org/dream-ontology#RO_BOB_StatusClaim", "types": ["do:HybridStatusClaim"], "asserts": [], "isAbout": ["do:BOB"], "assignsStatus": ["do:dream", "do:real"], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:RO_Cooper_StatusClaim", "label": "RO: Cooper Status Claim", "comment": "Individual of class HybridStatusClaim.", "uri": "http://example.org/dream-ontology#RO_Cooper_StatusClaim", "types": ["do:HybridStatusClaim"], "asserts": [], "isAbout": ["do:DaleCooper"], "assignsStatus": ["do:uncertain"], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:RO_Doppelganger_HybridStatusClaim", "label": "RO: Doppelganger Hybrid Status Claim", "comment": "Individual of class HybridStatusClaim.", "uri": "http://example.org/dream-ontology#RO_Doppelganger_HybridStatusClaim", "types": ["do:HybridStatusClaim"], "asserts": [], "isAbout": ["do:CooperDoppelgangerEncounterEvent"], "assignsStatus": ["do:dream", "do:real"], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:RO_Laura_StatusClaim", "label": "RO: Laura Status Claim", "comment": "Individual of class HybridStatusClaim.", "uri": "http://example.org/dream-ontology#RO_Laura_StatusClaim", "types": ["do:HybridStatusClaim"], "asserts": [], "isAbout": ["do:LauraPalmer"], "assignsStatus": ["do:uncertain"], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:RO_Leland_StatusClaim", "label": "RO: Leland Status Claim", "comment": "Individual of class HybridStatusClaim.", "uri": "http://example.org/dream-ontology#RO_Leland_StatusClaim", "types": ["do:HybridStatusClaim"], "asserts": [], "isAbout": ["do:LelandPalmer"], "assignsStatus": ["do:real", "do:uncertain"], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:RO_Murder_HybridStatusClaim", "label": "RO: Murder Hybrid Status Claim", "comment": "Individual of class HybridStatusClaim.", "uri": "http://example.org/dream-ontology#RO_Murder_HybridStatusClaim", "types": ["do:HybridStatusClaim"], "asserts": [], "isAbout": ["do:LauraMurderEvent"], "assignsStatus": ["do:dream", "do:real"], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:RO_TwinPeaks_StatusClaim", "label": "RO: Twin Peaks Status Claim", "comment": "Individual of class HybridStatusClaim.", "uri": "http://example.org/dream-ontology#RO_TwinPeaks_StatusClaim", "types": ["do:HybridStatusClaim"], "asserts": [], "isAbout": ["do:TwinPeaksTown"], "assignsStatus": ["do:dream", "do:real"], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:RO_Rule_01", "label": "RO_Rule_01", "comment": "", "uri": "http://example.org/dream-ontology#RO_Rule_01", "types": ["do:Claim", "do:TheoryRuleClaim"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": ["ContradictionHandling"], "ruleText": ["Contradictions and paradoxes are meaningful features of the narrative rather than problems requiring resolution."]}, {"id": "do:RO_Rule_02", "label": "RO_Rule_02", "comment": "", "uri": "http://example.org/dream-ontology#RO_Rule_02", "types": ["do:Claim", "do:TheoryRuleClaim"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": ["TemporalAssumptions"], "ruleText": ["Narrative time is not globally linear. While everyday sequences may appear chronological, dream–reality merging produces temporal instability, repetition, and discontinuity."]}, {"id": "do:TwinPeaksTown", "label": "Twin Peaks Town", "comment": "Individual of class Place.", "uri": "http://example.org/dream-ontology#TwinPeaksTown", "types": ["do:Place"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:uncertain", "label": "uncertain", "comment": "uncertain is a specialized kind of Reality Status.", "uri": "http://example.org/dream-ontology#uncertain", "types": ["owl:Class"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": [], "ruleText": []}], "groups": {"theories": [{"id": "do:CooperDreamTheory", "label": "Cooper Dream Theory", "comment": "Individual of class CooperDream.", "uri": "http://example.org/dream-ontology#CooperDreamTheory", "types": ["do:CooperDream", "do:Theory"], "asserts": ["do:CD_BOB_StatusClaim", "do:CD_BlackLodge_StatusClaim", "do:CD_Cooper_SingleDreamerClaim", "do:CD_Cooper_StatusClaim", "do:CD_Doppelganger_StatusShiftClaim", "do:CD_Laura_StatusClaim", "do:CD_Leland_StatusClaim", "do:CD_Murder_StatusClaim", "do:CD_Rule_01", "do:CD_Rule_02", "do:CD_TwinPeaks_StatusClaim"], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:LauraDreamTheory", "label": "Laura Dream Theory", "comment": "Individual of class LauraDream.", "uri": "http://example.org/dream-ontology#LauraDreamTheory", "types": ["do:LauraDream", "do:Theory"], "asserts": ["do:LD_BOB_StatusClaim", "do:LD_BlackLodge_StatusClaim", "do:LD_Cooper_StatusClaim", "do:LD_Doppelganger_StatusClaim", "do:LD_Laura_SingleDreamerClaim", "do:LD_Laura_StatusClaim", "do:LD_Leland_StatusClaim", "do:LD_Murder_StatusShiftClaim", "do:LD_Rule_01", "do:LD_Rule_02", "do:LD_TwinPeaks_StatusClaim"], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:RealityOverlapTheory", "label": "Reality Overlap Theory", "comment": "Individual of class RealityOverlap.", "uri": "http://example.org/dream-ontology#RealityOverlapTheory", "types": ["do:RealityOverlap", "do:Theory"], "asserts": ["do:RO_BOB_StatusClaim", "do:RO_BlackLodge_StatusClaim", "do:RO_Cooper_StatusClaim", "do:RO_Doppelganger_HybridStatusClaim", "do:RO_Laura_StatusClaim", "do:RO_Leland_StatusClaim", "do:RO_Murder_HybridStatusClaim", "do:RO_Rule_01", "do:RO_Rule_02", "do:RO_TwinPeaks_StatusClaim"], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": [], "ruleText": []}], "persons": [{"id": "do:BOB", "label": "BOB", "comment": "Individual of class Person.", "uri": "http://example.org/dream-ontology#BOB", "types": ["do:Person"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:DaleCooper", "label": "Dale Cooper", "comment": "Individual of class Person.", "uri": "http://example.org/dream-ontology#DaleCooper", "types": ["do:Person"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:LauraPalmer", "label": "Laura Palmer", "comment": "Individual of class Person.", "uri": "http://example.org/dream-ontology#LauraPalmer", "types": ["do:Person"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:LelandPalmer", "label": "Leland Palmer", "comment": "Individual of class Person.", "uri": "http://example.org/dream-ontology#LelandPalmer", "types": ["do:Person"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": [], "ruleText": []}], "places": [{"id": "do:TwinPeaksTown", "label": "Twin Peaks Town", "comment": "Individual of class Place.", "uri": "http://example.org/dream-ontology#TwinPeaksTown", "types": ["do:Place"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": [], "ruleText": []}], "realms": [{"id": "do:BlackLodge", "label": "Black Lodge", "comment": "Individual of class Realm.", "uri": "http://example.org/dream-ontology#BlackLodge", "types": ["do:Realm"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": [], "ruleText": []}], "events": [{"id": "do:CooperDoppelgangerEncounterEvent", "label": "Cooper Doppelganger Encounter Event", "comment": "Individual of class Event.", "uri": "http://example.org/dream-ontology#CooperDoppelgangerEncounterEvent", "types": ["do:Event"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:LauraMurderEvent", "label": "Laura Murder Event", "comment": "Individual of class Event.", "uri": "http://example.org/dream-ontology#LauraMurderEvent", "types": ["do:Event"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": [], "ruleText": []}], "statusClaims": [{"id": "do:CD_BlackLodge_StatusClaim", "label": "CD: Black Lodge Status Claim", "comment": "Individual of class RealityStatusClaim.", "uri": "http://example.org/dream-ontology#CD_BlackLodge_StatusClaim", "types": ["do:RealityStatusClaim"], "asserts": [], "isAbout": ["do:BlackLodge"], "assignsStatus": ["do:dream"], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:CD_BOB_StatusClaim", "label": "CD: BOB Status Claim", "comment": "Individual of class RealityStatusClaim.", "uri": "http://example.org/dream-ontology#CD_BOB_StatusClaim", "types": ["do:RealityStatusClaim"], "asserts": [], "isAbout": ["do:BOB"], "assignsStatus": ["do:dream"], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:CD_Laura_StatusClaim", "label": "CD: Laura Status Claim", "comment": "Individual of class RealityStatusClaim.", "uri": "http://example.org/dream-ontology#CD_Laura_StatusClaim", "types": ["do:RealityStatusClaim"], "asserts": [], "isAbout": ["do:LauraPalmer"], "assignsStatus": ["do:dream"], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:CD_Leland_StatusClaim", "label": "CD: Leland Status Claim", "comment": "Individual of class RealityStatusClaim.", "uri": "http://example.org/dream-ontology#CD_Leland_StatusClaim", "types": ["do:RealityStatusClaim"], "asserts": [], "isAbout": ["do:LelandPalmer"], "assignsStatus": ["do:projection"], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:CD_Murder_StatusClaim", "label": "CD: Murder Status Claim", "comment": "Individual of class RealityStatusClaim.", "uri": "http://example.org/dream-ontology#CD_Murder_StatusClaim", "types": ["do:RealityStatusClaim"], "asserts": [], "isAbout": ["do:LauraMurderEvent"], "assignsStatus": ["do:dream"], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:CD_TwinPeaks_StatusClaim", "label": "CD: Twin Peaks Status Claim", "comment": "Individual of class RealityStatusClaim.", "uri": "http://example.org/dream-ontology#CD_TwinPeaks_StatusClaim", "types": ["do:RealityStatusClaim"], "asserts": [], "isAbout": ["do:TwinPeaksTown"], "assignsStatus": ["do:dream"], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:LD_BlackLodge_StatusClaim", "label": "LD: Black Lodge Status Claim", "comment": "Individual of class RealityStatusClaim.", "uri": "http://example.org/dream-ontology#LD_BlackLodge_StatusClaim", "types": ["do:RealityStatusClaim"], "asserts": [], "isAbout": ["do:BlackLodge"], "assignsStatus": ["do:dream"], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:LD_Cooper_StatusClaim", "label": "LD: Cooper Status Claim", "comment": "Individual of class RealityStatusClaim.", "uri": "http://example.org/dream-ontology#LD_Cooper_StatusClaim", "types": ["do:RealityStatusClaim"], "asserts": [], "isAbout": ["do:DaleCooper"], "assignsStatus": ["do:projection"], "hasDreamer": [], "ruleCategory": [], "ruleText": []}, {"id": "do:LD_Doppelganger_StatusClaim", "label": "LD: Doppelganger Status Claim", "comment": "Individual of class RealityStatusClaim.", "uri": "http://example.org/dream-ontology#LD_Doppelganger_StatusClaim", "types": ["do:RealityStatusClaim"], "asserts": [], "isAbout": ["do:CooperDoppelgangerEncounterEvent"], "assignsStatus": ["do:dream"], "hasDreamer": [], "ruleCategory": [], "ruleText": []}], "dreamerClaims": [{"id": "do:CD_Cooper_SingleDreamerClaim", "label": "CD: Cooper Single Dreamer Claim", "comment": "Individual of class SingleDreamerClaim.", "uri": "http://example.org/dream-ontology#CD_Cooper_SingleDreamerClaim", "types": ["do:DreamerClaim", "do:SingleDreamerClaim"], "asserts": [], "isAbout": ["do:DaleCooper"], "assignsStatus": [], "hasDreamer": ["do:DaleCooper"], "ruleCategory": [], "ruleText": []}, {"id": "do:LD_Laura_SingleDreamerClaim", "label": "LD: Laura Single Dreamer Claim", "comment": "Individual of class SingleDreamerClaim.", "uri": "http://example.org/dream-ontology#LD_Laura_SingleDreamerClaim", "types": ["do:DreamerClaim", "do:SingleDreamerClaim"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": ["do:LauraPalmer"], "ruleCategory": [], "ruleText": []}], "ruleClaims": [{"id": "do:CD_Rule_01", "label": "CD_Rule_01", "comment": "", "uri": "http://example.org/dream-ontology#CD_Rule_01", "types": ["do:Claim", "do:TheoryRuleClaim"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": ["ContradictionHandling"], "ruleText": ["Inconsistencies and identity splits are interpreted as dream distortions rather than logical errors"]}, {"id": "do:CD_Rule_02", "label": "CD_Rule_02", "comment": "", "uri": "http://example.org/dream-ontology#CD_Rule_02", "types": ["do:Claim", "do:TheoryRuleClaim"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": ["TemporalAssumptions"], "ruleText": ["Temporal instability, looping, and fragmented continuity are natural consequences of dream-based narration."]}, {"id": "do:LD_Rule_01", "label": "LD_Rule_01", "comment": "", "uri": "http://example.org/dream-ontology#LD_Rule_01", "types": ["do:Claim", "do:TheoryRuleClaim"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": ["ContradictionHandling"], "ruleText": ["Apparent contradictions, repetitions, or inconsistencies are resolved as dream effects such as repression, substitution, or symbolic displacement."]}, {"id": "do:LD_Rule_02", "label": "LD_Rule_02", "comment": "", "uri": "http://example.org/dream-ontology#LD_Rule_02", "types": ["do:Claim", "do:TheoryRuleClaim"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": ["TemporalAssumptions"], "ruleText": ["Time is non-linear and subjective; looping, forgetting, and narrative resets are expected features of the dream structure."]}, {"id": "do:RO_Rule_01", "label": "RO_Rule_01", "comment": "", "uri": "http://example.org/dream-ontology#RO_Rule_01", "types": ["do:Claim", "do:TheoryRuleClaim"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": ["ContradictionHandling"], "ruleText": ["Contradictions and paradoxes are meaningful features of the narrative rather than problems requiring resolution."]}, {"id": "do:RO_Rule_02", "label": "RO_Rule_02", "comment": "", "uri": "http://example.org/dream-ontology#RO_Rule_02", "types": ["do:Claim", "do:TheoryRuleClaim"], "asserts": [], "isAbout": [], "assignsStatus": [], "hasDreamer": [], "ruleCategory": ["TemporalAssumptions"], "ruleText": ["Narrative time is not globally linear. While everyday sequences may appear chronological, dream–reality merging produces temporal instability, repetition, and discontinuity."]}]}}</script>
+<script id="queryData" type="application/json">[{"title": "Ontology schema overview (classes & properties)", "desc": "Quick schema list: classes, object properties, and datatype properties with labels.", "sparql": "PREFIX do: <http://example.org/dream-ontology#>\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n\nSELECT ?kind ?iri ?label WHERE {\n  { ?iri a owl:Class . BIND(\"Class\" AS ?kind) }\n  UNION\n  { ?iri a owl:ObjectProperty . BIND(\"ObjectProperty\" AS ?kind) }\n  UNION\n  { ?iri a owl:DatatypeProperty . BIND(\"DatatypeProperty\" AS ?kind) }\n  OPTIONAL { ?iri rdfs:label ?label }\n}\nORDER BY ?kind LCASE(STR(?label))"}, {"title": "Claims asserted by each theory", "desc": "Shows the interpretive modules: a Theory asserts Claim individuals (status, dreamer, rules).", "sparql": "PREFIX do: <http://example.org/dream-ontology#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n\nSELECT ?theoryLabel ?claimLabel ?claim WHERE {\n  ?theory a do:Theory ; do:asserts ?claim .\n  OPTIONAL { ?theory rdfs:label ?theoryLabel }\n  OPTIONAL { ?claim  rdfs:label ?claimLabel }\n}\nORDER BY ?theoryLabel ?claimLabel"}, {"title": "Status assignments (by theory, by entity)", "desc": "Core validation query: under each theory, which status(es) are assigned to which entity?", "sparql": "PREFIX do: <http://example.org/dream-ontology#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n\nSELECT ?theoryLabel ?entityLabel ?statusLabel ?claimLabel WHERE {\n  ?theory a do:Theory ; do:asserts ?claim .\n  ?claim a do:RealityStatusClaim ;\n         do:isAbout ?entity ;\n         do:assignsStatus ?status .\n  OPTIONAL { ?theory rdfs:label ?theoryLabel }\n  OPTIONAL { ?entity rdfs:label ?entityLabel }\n  OPTIONAL { ?status rdfs:label ?statusLabel }\n  OPTIONAL { ?claim  rdfs:label ?claimLabel }\n}\nORDER BY ?theoryLabel ?entityLabel ?statusLabel"}, {"title": "Disagreements across theories", "desc": "Find entities whose assigned statuses differ across theories (interpretive plurality).", "sparql": "PREFIX do: <http://example.org/dream-ontology#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n\nSELECT ?entityLabel\n       (GROUP_CONCAT(DISTINCT ?theoryLabel; separator=\" | \") AS ?theories)\n       (GROUP_CONCAT(DISTINCT ?statusLabel; separator=\" | \") AS ?statuses)\nWHERE {\n  ?theory a do:Theory ; do:asserts ?claim .\n  ?claim a do:RealityStatusClaim ;\n         do:isAbout ?entity ;\n         do:assignsStatus ?status .\n  OPTIONAL { ?theory rdfs:label ?theoryLabel }\n  OPTIONAL { ?entity rdfs:label ?entityLabel }\n  OPTIONAL { ?status rdfs:label ?statusLabel }\n}\nGROUP BY ?entityLabel\nHAVING (COUNT(DISTINCT ?status) > 1)\nORDER BY ?entityLabel"}, {"title": "Hybrid status claims", "desc": "List HybridStatusClaim individuals and the multiple statuses they assign.", "sparql": "PREFIX do: <http://example.org/dream-ontology#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n\nSELECT ?claimLabel ?entityLabel (GROUP_CONCAT(DISTINCT ?statusLabel; separator=\" | \") AS ?statuses) WHERE {\n  ?claim a do:HybridStatusClaim ;\n         do:isAbout ?entity ;\n         do:assignsStatus ?status .\n  OPTIONAL { ?claim  rdfs:label ?claimLabel }\n  OPTIONAL { ?entity rdfs:label ?entityLabel }\n  OPTIONAL { ?status rdfs:label ?statusLabel }\n}\nGROUP BY ?claimLabel ?entityLabel\nORDER BY ?entityLabel"}, {"title": "Who is the dreamer in each theory?", "desc": "Uses dreamer claims (hasDreamer) to extract the dreamer per ideology.", "sparql": "PREFIX do: <http://example.org/dream-ontology#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n\nSELECT ?theoryLabel ?dreamerLabel ?claimLabel WHERE {\n  ?theory a do:Theory ; do:asserts ?claim .\n  ?claim a do:DreamerClaim ; do:hasDreamer ?dreamer .\n  OPTIONAL { ?theory  rdfs:label ?theoryLabel }\n  OPTIONAL { ?dreamer rdfs:label ?dreamerLabel }\n  OPTIONAL { ?claim   rdfs:label ?claimLabel }\n}\nORDER BY ?theoryLabel"}, {"title": "Theory rules (ruleCategory + ruleText) by ideology", "desc": "Retrieves interpretive principles as queryable data: contradiction-handling, time assumptions, etc.", "sparql": "PREFIX do: <http://example.org/dream-ontology#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n\nSELECT ?theoryLabel ?ruleLabel ?category ?text WHERE {\n  ?theory a do:Theory ; do:asserts ?rule .\n  ?rule a do:TheoryRuleClaim ;\n        do:ruleCategory ?category ;\n        do:ruleText ?text .\n  OPTIONAL { ?theory rdfs:label ?theoryLabel }\n  OPTIONAL { ?rule   rdfs:label ?ruleLabel }\n}\nORDER BY ?theoryLabel ?category ?ruleLabel"}]</script>
+
+<script>
+  const DATA = JSON.parse(document.getElementById('ontologyData').textContent);
+  const QUERIES = JSON.parse(document.getElementById('queryData').textContent);
+
+  // helpers
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s ?? '')
+    .replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')
+    .replaceAll('"','&quot;').replaceAll("'",'&#039;');
+
+  // fast lookup maps
+  const IND_BY_ID = new Map((DATA.individuals || []).map(x => [x.id, x]));
+  const CLASS_BY_ID = new Map((DATA.classes || []).map(x => [x.id, x]));
+  const PROP_BY_ID  = new Map([...(DATA.properties?.object||[]), ...(DATA.properties?.data||[])].map(x => [x.id, x]));
+
+  const VIEWS = {
+    overview: {
+      label: 'Overview',
+      items: () => ([
+        { kind:'meta', id:'meta', title:'Ontology snapshot', meta:`${DATA.meta.class_count} classes • ${DATA.meta.object_property_count} obj props • ${DATA.meta.data_property_count} data props • ${DATA.meta.individual_count} individuals` },
+        { kind:'group', id:'theories', title:'Theories', meta:`${DATA.groups.theories.length} individuals` },
+        { kind:'group', id:'entities', title:'Entities', meta:`${DATA.groups.persons.length + DATA.groups.places.length + DATA.groups.realms.length + DATA.groups.events.length} individuals` },
+        { kind:'group', id:'claims', title:'Claims', meta:`${DATA.groups.statusClaims.length + DATA.groups.dreamerClaims.length + DATA.groups.ruleClaims.length} individuals` },
+        { kind:'group', id:'schema', title:'Schema', meta:`${DATA.meta.class_count} classes • ${DATA.meta.object_property_count + DATA.meta.data_property_count} properties` },
+        { kind:'group', id:'queries', title:'SPARQL', meta:`${QUERIES.length} queries` },
+      ])
+    },
+    theories: {
+      label: 'Theories',
+      items: () => DATA.groups.theories.map(x => toItem(x, 'individual', 'Theory'))
+    },
+    entities: {
+      label: 'Entities',
+      items: () => ([
+        ...DATA.groups.persons.map(x => toItem(x, 'individual', 'Person')),
+        ...DATA.groups.places.map(x => toItem(x, 'individual', 'Place')),
+        ...DATA.groups.realms.map(x => toItem(x, 'individual', 'Realm')),
+        ...DATA.groups.events.map(x => toItem(x, 'individual', 'Event')),
+      ])
+    },
+    claims: {
+      label: 'Claims',
+      items: () => ([
+        ...DATA.groups.statusClaims.map(x => toItem(x, 'individual', 'Status claim')),
+        ...DATA.groups.dreamerClaims.map(x => toItem(x, 'individual', 'Dreamer claim')),
+        ...DATA.groups.ruleClaims.map(x => toItem(x, 'individual', 'Theory rule')),
+      ])
+    },
+    schema: {
+      label: 'Schema',
+      items: () => ([
+        ...DATA.classes.map(c => ({ kind:'class', id:c.id, title:c.label, meta:'Class' })),
+        ...(DATA.properties?.object||[]).map(p => ({ kind:'prop', id:p.id, title:p.label, meta:'ObjectProperty' })),
+        ...(DATA.properties?.data||[]).map(p => ({ kind:'prop', id:p.id, title:p.label, meta:'DatatypeProperty' })),
+      ])
+    },
+    queries: {
+      label: 'SPARQL',
+      items: () => QUERIES.map((q,i)=>({ kind:'query', id:'q'+i, title:q.title, meta:q.desc }))
+    },
+  };
+
+  function toItem(ind, kind, tag) {
+    const types = (ind.types || []).join(', ');
+    const meta = [tag, types].filter(Boolean).join(' • ');
+    return { kind, id:ind.id, title:ind.label, meta };
+  }
+
+  // UI state
+  let currentView = 'overview';
+
+  function renderTabs() {
+    const tabsEl = $('tabs');
+    tabsEl.innerHTML = '';
+    for (const key of Object.keys(VIEWS)) {
+      const div = document.createElement('div');
+      div.className = 'tab' + (key === currentView ? ' active' : '');
+      div.textContent = VIEWS[key].label;
+      div.onclick = () => {
+        currentView = key;
+        $('search').value = '';
+        render();
+      };
+      tabsEl.appendChild(div);
+    }
+  }
+
+  function renderList() {
+    const listEl = $('list');
+    const q = $('search').value.trim().toLowerCase();
+    const items = VIEWS[currentView].items().filter(it => {
+      if (!q) return true;
+      return (it.title||'').toLowerCase().includes(q) || (it.meta||'').toLowerCase().includes(q);
+    });
+
+    $('listLabel').textContent = VIEWS[currentView].label + (q ? ' • filtered' : '');
+    listEl.innerHTML = '';
+
+    if (!items.length) {
+      const p = document.createElement('div');
+      p.className = 'small';
+      p.textContent = 'No matches.';
+      listEl.appendChild(p);
+      return;
+    }
+
+    for (const it of items) {
+      const row = document.createElement('div');
+      row.className = 'item';
+      row.innerHTML = `<div class="title">${esc(it.title)}</div><div class="meta">${esc(it.meta||'')}</div>`;
+      row.onclick = () => openItem(it);
+      listEl.appendChild(row);
+    }
+  }
+
+  function renderDetail(html) { $('detail').innerHTML = html; }
+
+  function jump(viewKey) {
+    currentView = viewKey;
+    $('search').value = '';
+    render();
+  }
+
+  function openItem(it) {
+    if (it.kind === 'meta') return showOverview();
+    if (it.kind === 'group') return jump(it.id);
+    if (it.kind === 'query') return showQuery(parseInt(it.id.slice(1), 10));
+    if (it.kind === 'class') return showClass(it.id);
+    if (it.kind === 'prop') return showProperty(it.id);
+    if (it.kind === 'individual') return showIndividual(it.id);
+  }
+
+  function showOverview() {
+    const m = DATA.meta;
+    renderDetail(`
+      <h2>Ontology snapshot</h2>
+      <div class="small">Source: <strong>${esc(m.source_owl)}</strong> • Triples: ${m.triple_count}</div>
+      <div class="chips" style="margin-top:10px;">
+        <span class="chip" onclick="jump('theories')">Theories (${DATA.groups.theories.length})</span>
+        <span class="chip" onclick="jump('entities')">Entities</span>
+        <span class="chip" onclick="jump('claims')">Claims</span>
+        <span class="chip" onclick="jump('schema')">Schema</span>
+        <span class="chip" onclick="jump('queries')">SPARQL</span>
+      </div>
+      <div class="small" style="margin-top:10px;">
+        Backbone: <strong>asserts</strong> (Theory→Claim), <strong>isAbout</strong> (Claim→Entity),
+        <strong>assignsStatus</strong> (Claim→RealityStatus), <strong>hasDreamer</strong> (DreamerClaim→Person).
+      </div>
+    `);
+  }
+
+  function chipsFor(arr, kind) {
+    if (!arr || !arr.length) return '<span class="small">—</span>';
+    return arr.map(x => {
+      const safe = esc(x);
+      if (kind === 'class') return `<span class="chip" onclick="showClass('${safe}')">${safe}</span>`;
+      return `<span class="chip" onclick="showIndividual('${safe}')">${safe}</span>`;
+    }).join('');
+  }
+
+  function showClass(id) {
+    const c = CLASS_BY_ID.get(id);
+    if (!c) return renderDetail(`<h2>Not found</h2><div class="small">Class: ${esc(id)}</div>`);
+    const comment = c.comment ? `<div class="small" style="margin-top:8px;">${esc(c.comment)}</div>` : '';
+    renderDetail(`
+      <h2>${esc(c.label)}</h2>
+      <div class="small"><strong>ID:</strong> ${esc(c.id)}<br/><strong>URI:</strong> ${esc(c.uri)}</div>
+      ${comment}
+      <h3 style="margin:14px 0 6px 0;">Hierarchy</h3>
+      <div class="small"><strong>superclasses</strong></div>
+      <div class="chips">${chipsFor(c.subClassOf,'class')}</div>
+      <div class="small" style="margin-top:10px;"><strong>subclasses</strong></div>
+      <div class="chips">${chipsFor(c.subClasses,'class')}</div>
+    `);
+  }
+
+  function showProperty(id) {
+    const p = PROP_BY_ID.get(id);
+    if (!p) return renderDetail(`<h2>Not found</h2><div class="small">Property: ${esc(id)}</div>`);
+    const comment = p.comment ? `<div class="small" style="margin-top:8px;">${esc(p.comment)}</div>` : '';
+    renderDetail(`
+      <h2>${esc(p.label)}</h2>
+      <div class="small"><strong>ID:</strong> ${esc(p.id)}<br/><strong>URI:</strong> ${esc(p.uri)}</div>
+      ${comment}
+    `);
+  }
+
+  function showIndividual(id) {
+    const ind = IND_BY_ID.get(id);
+    if (!ind) return renderDetail(`<h2>Not found</h2><div class="small">Individual: ${esc(id)}</div>`);
+
+    const hasRule = (ind.ruleCategory && ind.ruleCategory.length) || (ind.ruleText && ind.ruleText.length);
+    const rule = hasRule ? `
+      <h3 style="margin:14px 0 6px 0;">Rule (data properties)</h3>
+      <div class="small"><strong>ruleCategory:</strong> ${esc((ind.ruleCategory||[])[0]||'')}</div>
+      <div class="small"><strong>ruleText:</strong> ${esc((ind.ruleText||[])[0]||'')}</div>
+    ` : '';
+
+    const comment = ind.comment ? `<div class="small" style="margin-top:8px;">${esc(ind.comment)}</div>` : '';
+
+    renderDetail(`
+      <h2>${esc(ind.label)}</h2>
+      <div class="small"><strong>ID:</strong> ${esc(ind.id)}<br/><strong>URI:</strong> ${esc(ind.uri)}</div>
+      ${comment}
+
+      <h3 style="margin:14px 0 6px 0;">Types</h3>
+      <div class="chips">${chipsFor(ind.types,'class')}</div>
+
+      <h3 style="margin:14px 0 6px 0;">Key relations</h3>
+      <div class="small"><strong>asserts</strong></div><div class="chips">${chipsFor(ind.asserts,'individual')}</div>
+      <div class="small" style="margin-top:8px;"><strong>isAbout</strong></div><div class="chips">${chipsFor(ind.isAbout,'individual')}</div>
+      <div class="small" style="margin-top:8px;"><strong>assignsStatus</strong></div><div class="chips">${chipsFor(ind.assignsStatus,'class')}</div>
+      <div class="small" style="margin-top:8px;"><strong>hasDreamer</strong></div><div class="chips">${chipsFor(ind.hasDreamer,'individual')}</div>
+
+      ${rule}
+
+      <div class="chips" style="margin-top:14px;">
+        <span class="chip" onclick="jump('queries')">Open SPARQL</span>
+      </div>
+    `);
+  }
+
+  function showQuery(idx) {
+    const q = QUERIES[idx];
+    if (!q) return;
+    renderDetail(`
+      <h2>${esc(q.title)}</h2>
+      <div class="small">${esc(q.desc)}</div>
+      <div style="margin-top:10px;">
+        <pre>${esc(q.sparql)}</pre>
+      </div>
+    `);
+  }
+
+  function render() {
+    renderTabs();
+    renderList();
+
+    if (currentView === 'overview') return showOverview();
+    if (currentView === 'queries') return showQuery(0);
+
+    const first = VIEWS[currentView].items()[0];
+    if (!first) return showOverview();
+    if (first.kind === 'individual') return showIndividual(first.id);
+    if (first.kind === 'class') return showClass(first.id);
+    if (first.kind === 'prop') return showProperty(first.id);
+    return showOverview();
+  }
+
+  $('search').addEventListener('input', renderList);
+  render();
+</script>
+</body>
+</html>

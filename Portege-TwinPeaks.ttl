@@ -1,0 +1,695 @@
+@prefix : <http://example.org/dream-ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.org/dream-ontology> a owl:Ontology ;
+    :competencyQuestion "Under CooperDreamTheory, what RealityStatus is assigned to BOB?",
+        "Where do two theories disagree on the RealityStatus of the same narrative entity?",
+        "Which claims are about LauraMurderEvent?",
+        "Which claims are asserted by each theory?",
+        "Which claims identify a dreamer, and who is the dreamer?",
+        "Which entities are assigned projection in any theory?",
+        "Which entities are uncertain under RealityOverlapTheory?",
+        "Which theories classify TwinPeaksTown as dream?" ;
+    rdfs:comment "This ontology models interpretive theories about Twin Peaks by separating narrative entities (Person, Place, Event, Realm) from theory-scoped claims. A Theory asserts one or more Claims. Each Claim isAbout a NarrativeEntity and may assign a RealityStatus or specify a dreamer (DreamerClaim). The design supports competing interpretations without forcing a single global truth." ;
+    owl:versionInfo "v1.0" .
+
+:BinaryStatusClaimShape sh:property [ sh:class :RealityStatus ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path :assignsStatus ] ;
+    sh:targetClass :BinaryStatusClaim .
+
+:ClaimAboutShape sh:property [ sh:class :NarrativeEntity ;
+            sh:minCount 1 ;
+            sh:path :isAbout ] ;
+    sh:targetClass :Claim .
+
+:DistributedDreamersClaimShape sh:property [ sh:class :Person ;
+            sh:minCount 2 ;
+            sh:path :hasDreamer ] ;
+    sh:targetClass :DistributedDreamersClaim .
+
+:DreamerExistenceClaim a owl:Class ;
+    rdfs:label "dreamer existence claim" ;
+    rdfs:comment "Dreamer Existence Claim is a concept in the ontology." ;
+    rdfs:subClassOf :DreamerClaim .
+
+:HybridStatusClaimShape sh:property [ sh:class :RealityStatus ;
+            sh:minCount 2 ;
+            sh:path :assignsStatus ] ;
+    sh:targetClass :HybridStatusClaim .
+
+:SingleDreamerClaimShape sh:property [ sh:class :Person ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:path :hasDreamer ] ;
+    sh:targetClass :SingleDreamerClaim .
+
+:StatusShiftClaimShape sh:property [ sh:class :RealityStatus ;
+            sh:minCount 2 ;
+            sh:path :assignsStatus ] ;
+    sh:targetClass :StatusShiftClaim .
+
+:asserts a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "asserts" ;
+    rdfs:comment "Links a Theory to the Claims it asserts." ;
+    rdfs:domain :Theory ;
+    rdfs:range :Claim .
+
+:competencyQuestion a owl:AnnotationProperty ;
+    rdfs:label "competency question" ;
+    rdfs:comment "Competency questions the ontology should be able to answer." .
+
+:ruleCategory a owl:DatatypeProperty ;
+    rdfs:label "rule category" ;
+    rdfs:comment "Category label for a theory rule claim." ;
+    rdfs:domain :TheoryRuleClaim ;
+    rdfs:range xsd:string .
+
+:ruleText a owl:DatatypeProperty ;
+    rdfs:label "rule text" ;
+    rdfs:comment "Human-readable text of a theory rule claim." ;
+    rdfs:domain :TheoryRuleClaim ;
+    rdfs:range xsd:string .
+
+sh:class a owl:AnnotationProperty .
+
+sh:maxCount a owl:AnnotationProperty .
+
+sh:minCount a owl:AnnotationProperty .
+
+sh:path a owl:AnnotationProperty .
+
+sh:property a owl:AnnotationProperty .
+
+sh:targetClass a owl:AnnotationProperty .
+
+:BinaryStatusClaim a owl:Class ;
+    rdfs:label "binary status claim" ;
+    rdfs:comment "Binary Status Claim is a concept in the ontology." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onClass :RealityStatus ;
+            owl:onProperty :assignsStatus ;
+            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ],
+        :RealityStatusClaim ;
+    owl:disjointWith :HybridStatusClaim,
+        :StatusShiftClaim .
+
+:CD_Rule_01 a :Claim,
+        :TheoryRuleClaim,
+        owl:NamedIndividual ;
+    :ruleCategory "ContradictionHandling" ;
+    :ruleText "Inconsistencies and identity splits are interpreted as dream distortions rather than logical errors" .
+
+:CD_Rule_02 a :Claim,
+        :TheoryRuleClaim,
+        owl:NamedIndividual ;
+    :ruleCategory "TemporalAssumptions" ;
+    :ruleText "Temporal instability, looping, and fragmented continuity are natural consequences of dream-based narration." .
+
+:CooperDream a owl:Class ;
+    rdfs:label "cooper-dream" ;
+    rdfs:comment "Cooper Dream is a specialized kind of Theory." ;
+    rdfs:subClassOf :Theory .
+
+:DistributedDreamersClaim a owl:Class ;
+    rdfs:label "distributed dreamers claim" ;
+    rdfs:comment "Distributed Dreamers Claim is a concept in the ontology." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+            owl:onClass :Person ;
+            owl:onProperty :hasDreamer ],
+        :DreamerClaim ;
+    owl:disjointWith :SingleDreamerClaim .
+
+:LD_Rule_01 a :Claim,
+        :TheoryRuleClaim,
+        owl:NamedIndividual ;
+    :ruleCategory "ContradictionHandling" ;
+    :ruleText "Apparent contradictions, repetitions, or inconsistencies are resolved as dream effects such as repression, substitution, or symbolic displacement." .
+
+:LD_Rule_02 a :Claim,
+        :TheoryRuleClaim,
+        owl:NamedIndividual ;
+    :ruleCategory "TemporalAssumptions" ;
+    :ruleText "Time is non-linear and subjective; looping, forgetting, and narrative resets are expected features of the dream structure." .
+
+:LauraDream a owl:Class ;
+    rdfs:label "laura-dream" ;
+    rdfs:comment "Laura Dream is a specialized kind of Theory." ;
+    rdfs:subClassOf :Theory .
+
+:RO_Rule_01 a :Claim,
+        :TheoryRuleClaim,
+        owl:NamedIndividual ;
+    :ruleCategory "ContradictionHandling" ;
+    :ruleText "Contradictions and paradoxes are meaningful features of the narrative rather than problems requiring resolution." .
+
+:RealityOverlap a owl:Class ;
+    rdfs:label "reality overlap" ;
+    rdfs:comment "Reality Overlap is a specialized kind of Theory." ;
+    rdfs:subClassOf :Theory .
+
+:non-existant a owl:Class,
+        owl:NamedIndividual ;
+    rdfs:label "non-existant" ;
+    rdfs:comment "non existant is a specialized kind of Reality Status." ;
+    rdfs:subClassOf :RealityStatus .
+
+:Event a owl:Class ;
+    rdfs:label "event" ;
+    rdfs:comment "Event is a specialized kind of Narrative Entity." ;
+    rdfs:subClassOf :NarrativeEntity ;
+    owl:disjointWith :Person,
+        :Place,
+        :Realm .
+
+:RO_Rule_02 a :Claim,
+        :TheoryRuleClaim,
+        owl:NamedIndividual ;
+    :ruleCategory "TemporalAssumptions" ;
+    :ruleText "Narrative time is not globally linear. While everyday sequences may appear chronological, dream–reality merging produces temporal instability, repetition, and discontinuity." .
+
+:isAbout a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "is about" ;
+    rdfs:comment "Links a Claim to the NarrativeEntity it concerns." ;
+    rdfs:domain :Claim ;
+    rdfs:range :NarrativeEntity .
+
+:CD_BOB_StatusClaim a :RealityStatusClaim,
+        owl:NamedIndividual ;
+    rdfs:label "CD: BOB Status Claim" ;
+    :assignsStatus :dream ;
+    :isAbout :BOB ;
+    rdfs:comment "Individual of class RealityStatusClaim." ;
+    rdfs:seeAlso :BOB,
+        :CooperDreamTheory .
+
+:CD_BlackLodge_StatusClaim a :RealityStatusClaim,
+        owl:NamedIndividual ;
+    rdfs:label "CD: Black Lodge Status Claim" ;
+    :assignsStatus :dream ;
+    :isAbout :BlackLodge ;
+    rdfs:comment "Individual of class RealityStatusClaim." ;
+    rdfs:seeAlso :BlackLodge,
+        :CooperDreamTheory .
+
+:CD_Cooper_SingleDreamerClaim a :DreamerClaim,
+        :SingleDreamerClaim,
+        owl:NamedIndividual ;
+    rdfs:label "CD: Cooper Single Dreamer Claim" ;
+    :hasDreamer :DaleCooper ;
+    :isAbout :DaleCooper ;
+    rdfs:comment "Individual of class SingleDreamerClaim." ;
+    rdfs:seeAlso :CooperDreamTheory,
+        :DaleCooper .
+
+:CD_Cooper_StatusClaim a :HybridStatusClaim,
+        owl:NamedIndividual ;
+    rdfs:label "CD: Cooper Status Claim" ;
+    :assignsStatus :projection,
+        :real ;
+    :isAbout :DaleCooper ;
+    rdfs:comment "Individual of class HybridStatusClaim." ;
+    rdfs:seeAlso :CooperDreamTheory,
+        :DaleCooper .
+
+:CD_Doppelganger_StatusShiftClaim a :StatusShiftClaim,
+        owl:NamedIndividual ;
+    rdfs:label "CD: Doppelganger Status Shift Claim" ;
+    :assignsStatus :dream,
+        :real ;
+    :isAbout :CooperDoppelgangerEncounterEvent ;
+    rdfs:comment "Individual of class StatusShiftClaim." ;
+    rdfs:seeAlso :CooperDoppelgangerEncounterEvent,
+        :CooperDreamTheory .
+
+:CD_Laura_StatusClaim a :RealityStatusClaim,
+        owl:NamedIndividual ;
+    rdfs:label "CD: Laura Status Claim" ;
+    :assignsStatus :dream ;
+    :isAbout :LauraPalmer ;
+    rdfs:comment "Individual of class RealityStatusClaim." ;
+    rdfs:seeAlso :CooperDreamTheory,
+        :LauraPalmer .
+
+:CD_Leland_StatusClaim a :RealityStatusClaim,
+        owl:NamedIndividual ;
+    rdfs:label "CD: Leland Status Claim" ;
+    :assignsStatus :projection ;
+    :isAbout :LelandPalmer ;
+    rdfs:comment "Individual of class RealityStatusClaim." ;
+    rdfs:seeAlso :CooperDreamTheory,
+        :LelandPalmer .
+
+:CD_Murder_StatusClaim a :RealityStatusClaim,
+        owl:NamedIndividual ;
+    rdfs:label "CD: Murder Status Claim" ;
+    :assignsStatus :dream ;
+    :isAbout :LauraMurderEvent ;
+    rdfs:comment "Individual of class RealityStatusClaim." ;
+    rdfs:seeAlso :CooperDreamTheory,
+        :LauraMurderEvent .
+
+:CD_TwinPeaks_StatusClaim a :RealityStatusClaim,
+        owl:NamedIndividual ;
+    rdfs:label "CD: Twin Peaks Status Claim" ;
+    :assignsStatus :dream ;
+    :isAbout :TwinPeaksTown ;
+    rdfs:comment "Individual of class RealityStatusClaim." ;
+    rdfs:seeAlso :CooperDreamTheory,
+        :TwinPeaksTown .
+
+:LD_BOB_StatusClaim a :HybridStatusClaim,
+        owl:NamedIndividual ;
+    rdfs:label "LD: BOB Status Claim" ;
+    :assignsStatus :non-existant,
+        :projection ;
+    :isAbout :BOB ;
+    rdfs:comment "Individual of class HybridStatusClaim." ;
+    rdfs:seeAlso :BOB,
+        :LauraDreamTheory .
+
+:LD_BlackLodge_StatusClaim a :RealityStatusClaim,
+        owl:NamedIndividual ;
+    rdfs:label "LD: Black Lodge Status Claim" ;
+    :assignsStatus :dream ;
+    :isAbout :BlackLodge ;
+    rdfs:comment "Individual of class RealityStatusClaim." ;
+    rdfs:seeAlso :BlackLodge,
+        :LauraDreamTheory .
+
+:LD_Cooper_StatusClaim a :RealityStatusClaim,
+        owl:NamedIndividual ;
+    rdfs:label "LD: Cooper Status Claim" ;
+    :assignsStatus :projection ;
+    :isAbout :DaleCooper ;
+    rdfs:comment "Individual of class RealityStatusClaim." ;
+    rdfs:seeAlso :DaleCooper,
+        :LauraDreamTheory .
+
+:LD_Doppelganger_StatusClaim a :RealityStatusClaim,
+        owl:NamedIndividual ;
+    rdfs:label "LD: Doppelganger Status Claim" ;
+    :assignsStatus :dream ;
+    :isAbout :CooperDoppelgangerEncounterEvent ;
+    rdfs:comment "Individual of class RealityStatusClaim." ;
+    rdfs:seeAlso :CooperDoppelgangerEncounterEvent,
+        :LauraDreamTheory .
+
+:LD_Laura_SingleDreamerClaim a :DreamerClaim,
+        :SingleDreamerClaim,
+        owl:NamedIndividual ;
+    rdfs:label "LD: Laura Single Dreamer Claim" ;
+    :hasDreamer :LauraPalmer ;
+    rdfs:comment "Individual of class SingleDreamerClaim." ;
+    rdfs:seeAlso :LauraDreamTheory,
+        :LauraPalmer .
+
+:LD_Laura_StatusClaim a :HybridStatusClaim,
+        owl:NamedIndividual ;
+    rdfs:label "LD: Laura Status Claim" ;
+    :assignsStatus :projection,
+        :real ;
+    :isAbout :LauraPalmer ;
+    rdfs:comment "Individual of class HybridStatusClaim." ;
+    rdfs:seeAlso :LauraDreamTheory,
+        :LauraPalmer .
+
+:LD_Leland_StatusClaim a :HybridStatusClaim,
+        owl:NamedIndividual ;
+    rdfs:label "LD: Leland Status Claim" ;
+    :assignsStatus :projection,
+        :real ;
+    :isAbout :LelandPalmer ;
+    rdfs:comment "Individual of class HybridStatusClaim." ;
+    rdfs:seeAlso :LauraDreamTheory,
+        :LelandPalmer .
+
+:LD_Murder_StatusShiftClaim a :StatusShiftClaim,
+        owl:NamedIndividual ;
+    rdfs:label "LD: Murder Status Shift Claim" ;
+    :assignsStatus :projection ;
+    :isAbout :LauraMurderEvent ;
+    rdfs:comment "Individual of class StatusShiftClaim." ;
+    rdfs:seeAlso :LauraDreamTheory,
+        :LauraMurderEvent .
+
+:LD_TwinPeaks_StatusClaim a :HybridStatusClaim,
+        owl:NamedIndividual ;
+    rdfs:label "LD: Twin Peaks Status Claim" ;
+    :assignsStatus :uncertain ;
+    :isAbout :TwinPeaksTown ;
+    rdfs:comment "Individual of class HybridStatusClaim." ;
+    rdfs:seeAlso :LauraDreamTheory,
+        :TwinPeaksTown .
+
+:Place a owl:Class ;
+    rdfs:label "place" ;
+    rdfs:comment "Place is a specialized kind of Narrative Entity." ;
+    rdfs:subClassOf :NarrativeEntity ;
+    owl:disjointWith :Realm .
+
+:RO_BOB_StatusClaim a :HybridStatusClaim,
+        owl:NamedIndividual ;
+    rdfs:label "RO: BOB Status Claim" ;
+    :assignsStatus :dream,
+        :real ;
+    :isAbout :BOB ;
+    rdfs:comment "Individual of class HybridStatusClaim." ;
+    rdfs:seeAlso :BOB,
+        :RealityOverlapTheory .
+
+:RO_BlackLodge_StatusClaim a :HybridStatusClaim,
+        owl:NamedIndividual ;
+    rdfs:label "RO: Black Lodge Status Claim" ;
+    :asserts :RO_Rule_02 ;
+    :assignsStatus :uncertain ;
+    :isAbout :BlackLodge ;
+    rdfs:comment "Individual of class HybridStatusClaim." ;
+    rdfs:seeAlso :BlackLodge,
+        :RealityOverlapTheory .
+
+:RO_Cooper_StatusClaim a :HybridStatusClaim,
+        owl:NamedIndividual ;
+    rdfs:label "RO: Cooper Status Claim" ;
+    :assignsStatus :uncertain ;
+    :isAbout :DaleCooper ;
+    rdfs:comment "Individual of class HybridStatusClaim." ;
+    rdfs:seeAlso :DaleCooper,
+        :RealityOverlapTheory .
+
+:RO_Doppelganger_HybridStatusClaim a :HybridStatusClaim,
+        owl:NamedIndividual ;
+    rdfs:label "RO: Doppelganger Hybrid Status Claim" ;
+    :assignsStatus :dream,
+        :real ;
+    :isAbout :CooperDoppelgangerEncounterEvent ;
+    rdfs:comment "Individual of class HybridStatusClaim." ;
+    rdfs:seeAlso :CooperDoppelgangerEncounterEvent,
+        :RealityOverlapTheory .
+
+:RO_Laura_StatusClaim a :HybridStatusClaim,
+        owl:NamedIndividual ;
+    rdfs:label "RO: Laura Status Claim" ;
+    :assignsStatus :uncertain ;
+    :isAbout :LauraPalmer ;
+    rdfs:comment "Individual of class HybridStatusClaim." ;
+    rdfs:seeAlso :LauraPalmer,
+        :RealityOverlapTheory .
+
+:RO_Leland_StatusClaim a :HybridStatusClaim,
+        owl:NamedIndividual ;
+    rdfs:label "RO: Leland Status Claim" ;
+    :assignsStatus :real,
+        :uncertain ;
+    :isAbout :LelandPalmer ;
+    rdfs:comment "Individual of class HybridStatusClaim." ;
+    rdfs:seeAlso :LelandPalmer,
+        :RealityOverlapTheory .
+
+:RO_Murder_HybridStatusClaim a :HybridStatusClaim,
+        owl:NamedIndividual ;
+    rdfs:label "RO: Murder Hybrid Status Claim" ;
+    :assignsStatus :dream,
+        :real ;
+    :isAbout :LauraMurderEvent ;
+    rdfs:comment "Individual of class HybridStatusClaim." ;
+    rdfs:seeAlso :LauraMurderEvent,
+        :RealityOverlapTheory .
+
+:RO_TwinPeaks_StatusClaim a :HybridStatusClaim,
+        owl:NamedIndividual ;
+    rdfs:label "RO: Twin Peaks Status Claim" ;
+    :assignsStatus :dream,
+        :real ;
+    :isAbout :TwinPeaksTown ;
+    rdfs:comment "Individual of class HybridStatusClaim." ;
+    rdfs:seeAlso :RealityOverlapTheory,
+        :TwinPeaksTown .
+
+:Realm a owl:Class ;
+    rdfs:label "realm" ;
+    rdfs:comment "Realm is a specialized kind of Narrative Entity." ;
+    rdfs:subClassOf :NarrativeEntity .
+
+:SingleDreamerClaim a owl:Class ;
+    rdfs:label "single dreamer claim" ;
+    rdfs:comment "Single Dreamer Claim is a concept in the ontology." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onClass :Person ;
+            owl:onProperty :hasDreamer ;
+            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ],
+        :DreamerClaim .
+
+:StatusShiftClaim a owl:Class ;
+    rdfs:label "status shift claim" ;
+    rdfs:comment "Status Shift Claim is a concept in the ontology." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+            owl:onClass :RealityStatus ;
+            owl:onProperty :assignsStatus ],
+        :RealityStatusClaim .
+
+:hasDreamer a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has dreamer" ;
+    rdfs:comment "Links a DreamerClaim to the Person who is asserted to be the dreamer." ;
+    rdfs:domain :DreamerClaim ;
+    rdfs:range :Person .
+
+:uncertain a owl:Class,
+        owl:NamedIndividual ;
+    rdfs:label "uncertain" ;
+    rdfs:comment "uncertain is a specialized kind of Reality Status." ;
+    rdfs:subClassOf :RealityStatus .
+
+:BOB a :Person,
+        owl:NamedIndividual ;
+    rdfs:label "BOB" ;
+    rdfs:comment "Individual of class Person." ;
+    rdfs:seeAlso :CD_BOB_StatusClaim,
+        :LD_BOB_StatusClaim,
+        :RO_BOB_StatusClaim .
+
+:BlackLodge a :Realm,
+        owl:NamedIndividual ;
+    rdfs:label "Black Lodge" ;
+    rdfs:comment "Individual of class Realm." ;
+    rdfs:seeAlso :CD_BlackLodge_StatusClaim,
+        :LD_BlackLodge_StatusClaim,
+        :RO_BlackLodge_StatusClaim .
+
+:CooperDoppelgangerEncounterEvent a :Event,
+        owl:NamedIndividual ;
+    rdfs:label "Cooper Doppelganger Encounter Event" ;
+    rdfs:comment "Individual of class Event." ;
+    rdfs:seeAlso :CD_Doppelganger_StatusShiftClaim,
+        :LD_Doppelganger_StatusClaim,
+        :RO_Doppelganger_HybridStatusClaim .
+
+:DreamerClaim a owl:Class ;
+    rdfs:label "dreamer claim" ;
+    rdfs:comment "Dreamer Claim is a specialized kind of Claim." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty :hasDreamer ;
+            owl:someValuesFrom :Person ],
+        :Claim .
+
+:LauraMurderEvent a :Event,
+        owl:NamedIndividual ;
+    rdfs:label "Laura Murder Event" ;
+    rdfs:comment "Individual of class Event." ;
+    rdfs:seeAlso :CD_Murder_StatusClaim,
+        :LD_Murder_StatusShiftClaim,
+        :RO_Murder_HybridStatusClaim .
+
+:LelandPalmer a :Person,
+        owl:NamedIndividual ;
+    rdfs:label "Leland Palmer" ;
+    rdfs:comment "Individual of class Person." ;
+    rdfs:seeAlso :CD_Leland_StatusClaim,
+        :LD_Leland_StatusClaim,
+        :RO_Leland_StatusClaim .
+
+:TwinPeaksTown a :Place,
+        owl:NamedIndividual ;
+    rdfs:label "Twin Peaks Town" ;
+    rdfs:comment "Individual of class Place." ;
+    rdfs:seeAlso :CD_TwinPeaks_StatusClaim,
+        :LD_TwinPeaks_StatusClaim,
+        :RO_TwinPeaks_StatusClaim .
+
+:NarrativeEntity a owl:Class ;
+    rdfs:label "Narrative entity" .
+
+:Theory a owl:Class ;
+    rdfs:label "Theory" .
+
+:assignsStatus a owl:AsymmetricProperty,
+        owl:IrreflexiveProperty,
+        owl:ObjectProperty ;
+    rdfs:label "assigns status" ;
+    rdfs:comment "Links a RealityStatusClaim to a RealityStatus value it assigns." ;
+    rdfs:domain :RealityStatusClaim ;
+    rdfs:range :RealityStatus .
+
+:projection a owl:Class,
+        owl:NamedIndividual ;
+    rdfs:label "projection" ;
+    rdfs:comment "projection is a specialized kind of Reality Status." ;
+    rdfs:subClassOf :RealityStatus .
+
+:LauraPalmer a :Person,
+        owl:NamedIndividual ;
+    rdfs:label "Laura Palmer" ;
+    rdfs:comment "Individual of class Person." ;
+    rdfs:seeAlso :CD_Laura_StatusClaim,
+        :LD_Laura_SingleDreamerClaim,
+        :LD_Laura_StatusClaim,
+        :RO_Laura_StatusClaim .
+
+:RealityOverlapTheory a :RealityOverlap,
+        :Theory,
+        owl:NamedIndividual ;
+    rdfs:label "Reality Overlap Theory" ;
+    :asserts :RO_BOB_StatusClaim,
+        :RO_BlackLodge_StatusClaim,
+        :RO_Cooper_StatusClaim,
+        :RO_Doppelganger_HybridStatusClaim,
+        :RO_Laura_StatusClaim,
+        :RO_Leland_StatusClaim,
+        :RO_Murder_HybridStatusClaim,
+        :RO_Rule_01,
+        :RO_Rule_02,
+        :RO_TwinPeaks_StatusClaim ;
+    rdfs:comment "Individual of class RealityOverlap." ;
+    rdfs:seeAlso :RO_BOB_StatusClaim,
+        :RO_BlackLodge_StatusClaim,
+        :RO_Cooper_StatusClaim,
+        :RO_Doppelganger_HybridStatusClaim,
+        :RO_Laura_StatusClaim,
+        :RO_Leland_StatusClaim,
+        :RO_Murder_HybridStatusClaim,
+        :RO_TwinPeaks_StatusClaim .
+
+:TheoryRuleClaim a owl:Class ;
+    rdfs:label "theory rule claim" ;
+    rdfs:comment "Theory Rule Claim is a specialized kind of Claim." ;
+    rdfs:subClassOf :Claim .
+
+:CooperDreamTheory a :CooperDream,
+        :Theory,
+        owl:NamedIndividual ;
+    rdfs:label "Cooper Dream Theory" ;
+    :asserts :CD_BOB_StatusClaim,
+        :CD_BlackLodge_StatusClaim,
+        :CD_Cooper_SingleDreamerClaim,
+        :CD_Cooper_StatusClaim,
+        :CD_Doppelganger_StatusShiftClaim,
+        :CD_Laura_StatusClaim,
+        :CD_Leland_StatusClaim,
+        :CD_Murder_StatusClaim,
+        :CD_Rule_01,
+        :CD_Rule_02,
+        :CD_TwinPeaks_StatusClaim ;
+    rdfs:comment "Individual of class CooperDream." ;
+    rdfs:seeAlso :CD_BOB_StatusClaim,
+        :CD_BlackLodge_StatusClaim,
+        :CD_Cooper_SingleDreamerClaim,
+        :CD_Cooper_StatusClaim,
+        :CD_Doppelganger_StatusShiftClaim,
+        :CD_Laura_StatusClaim,
+        :CD_Leland_StatusClaim,
+        :CD_Murder_StatusClaim,
+        :CD_TwinPeaks_StatusClaim .
+
+:DaleCooper a :Person,
+        owl:NamedIndividual ;
+    rdfs:label "Dale Cooper" ;
+    rdfs:comment "Individual of class Person." ;
+    rdfs:seeAlso :CD_Cooper_SingleDreamerClaim,
+        :CD_Cooper_StatusClaim,
+        :LD_Cooper_StatusClaim,
+        :RO_Cooper_StatusClaim .
+
+:LauraDreamTheory a :LauraDream,
+        :Theory,
+        owl:NamedIndividual ;
+    rdfs:label "Laura Dream Theory" ;
+    :asserts :LD_BOB_StatusClaim,
+        :LD_BlackLodge_StatusClaim,
+        :LD_Cooper_StatusClaim,
+        :LD_Doppelganger_StatusClaim,
+        :LD_Laura_SingleDreamerClaim,
+        :LD_Laura_StatusClaim,
+        :LD_Leland_StatusClaim,
+        :LD_Murder_StatusShiftClaim,
+        :LD_Rule_01,
+        :LD_Rule_02,
+        :LD_TwinPeaks_StatusClaim ;
+    rdfs:comment "Individual of class LauraDream." ;
+    rdfs:seeAlso :LD_BOB_StatusClaim,
+        :LD_BlackLodge_StatusClaim,
+        :LD_Cooper_StatusClaim,
+        :LD_Doppelganger_StatusClaim,
+        :LD_Laura_SingleDreamerClaim,
+        :LD_Laura_StatusClaim,
+        :LD_Leland_StatusClaim,
+        :LD_Murder_StatusShiftClaim,
+        :LD_TwinPeaks_StatusClaim .
+
+:real a owl:Class,
+        owl:NamedIndividual ;
+    rdfs:label "real" ;
+    rdfs:comment "real is a specialized kind of Reality Status." ;
+    rdfs:subClassOf :RealityStatus .
+
+:Person a owl:Class ;
+    rdfs:label "person" ;
+    rdfs:comment "Person is a specialized kind of Narrative Entity." ;
+    rdfs:subClassOf :NarrativeEntity ;
+    owl:disjointWith :Place,
+        :Realm .
+
+:Claim a owl:Class ;
+    rdfs:label "Claim" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty :isAbout ;
+            owl:someValuesFrom :NarrativeEntity ] .
+
+:dream a owl:Class,
+        owl:NamedIndividual ;
+    rdfs:label "dream" ;
+    rdfs:comment "dream is a specialized kind of Reality Status." ;
+    rdfs:subClassOf :RealityStatus .
+
+:RealityStatus a owl:Class ;
+    rdfs:label "Reality status" .
+
+:RealityStatusClaim a owl:Class ;
+    rdfs:label "reality status claim" ;
+    rdfs:comment "Reality Status Claim is a specialized kind of Claim." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty :assignsStatus ;
+            owl:someValuesFrom :RealityStatus ],
+        :Claim .
+
+:HybridStatusClaim a owl:Class ;
+    rdfs:label "hybrid status claim" ;
+    rdfs:comment "Hybrid Status Claim is a concept in the ontology." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+            owl:onClass :RealityStatus ;
+            owl:onProperty :assignsStatus ],
+        :RealityStatusClaim ;
+    owl:disjointWith :StatusShiftClaim .
+

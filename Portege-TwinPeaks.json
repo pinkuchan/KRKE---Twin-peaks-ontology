@@ -1,0 +1,2692 @@
+[
+  {
+    "@id": "http://example.org/dream-ontology#hasDreamer",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "http://www.w3.org/2002/07/owl#AsymmetricProperty",
+      "http://www.w3.org/2002/07/owl#IrreflexiveProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Links a DreamerClaim to the Person who is asserted to be the dreamer."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/dream-ontology#DreamerClaim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "has dreamer"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://example.org/dream-ontology#Person"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#SingleDreamerClaimShape",
+    "http://www.w3.org/ns/shacl#property": [
+      {
+        "@id": "_:N364e917f7ed24beb87d08e496b4e79c4"
+      }
+    ],
+    "http://www.w3.org/ns/shacl#targetClass": [
+      {
+        "@id": "http://example.org/dream-ontology#SingleDreamerClaim"
+      }
+    ]
+  },
+  {
+    "@id": "_:N364e917f7ed24beb87d08e496b4e79c4",
+    "http://www.w3.org/ns/shacl#class": [
+      {
+        "@id": "http://example.org/dream-ontology#Person"
+      }
+    ],
+    "http://www.w3.org/ns/shacl#maxCount": [
+      {
+        "@value": 1
+      }
+    ],
+    "http://www.w3.org/ns/shacl#minCount": [
+      {
+        "@value": 1
+      }
+    ],
+    "http://www.w3.org/ns/shacl#path": [
+      {
+        "@id": "http://example.org/dream-ontology#hasDreamer"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#CD_Rule_01",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#Claim",
+      "http://example.org/dream-ontology#TheoryRuleClaim"
+    ],
+    "http://example.org/dream-ontology#ruleCategory": [
+      {
+        "@value": "ContradictionHandling"
+      }
+    ],
+    "http://example.org/dream-ontology#ruleText": [
+      {
+        "@value": "Inconsistencies and identity splits are interpreted as dream distortions rather than logical errors"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#ruleText",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Human-readable text of a theory rule claim."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/dream-ontology#TheoryRuleClaim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "rule text"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#HybridStatusClaimShape",
+    "http://www.w3.org/ns/shacl#property": [
+      {
+        "@id": "_:Nd9596f255308435f879d849a317d5978"
+      }
+    ],
+    "http://www.w3.org/ns/shacl#targetClass": [
+      {
+        "@id": "http://example.org/dream-ontology#HybridStatusClaim"
+      }
+    ]
+  },
+  {
+    "@id": "_:Nd9596f255308435f879d849a317d5978",
+    "http://www.w3.org/ns/shacl#class": [
+      {
+        "@id": "http://example.org/dream-ontology#RealityStatus"
+      }
+    ],
+    "http://www.w3.org/ns/shacl#minCount": [
+      {
+        "@value": 2
+      }
+    ],
+    "http://www.w3.org/ns/shacl#path": [
+      {
+        "@id": "http://example.org/dream-ontology#assignsStatus"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#BlackLodge",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#Realm"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class Realm."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Black Lodge"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#CD_BlackLodge_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LD_BlackLodge_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#RO_BlackLodge_StatusClaim"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#ClaimAboutShape",
+    "http://www.w3.org/ns/shacl#property": [
+      {
+        "@id": "_:Nddb01bbbffea4bf3ad3acda47431e5d5"
+      }
+    ],
+    "http://www.w3.org/ns/shacl#targetClass": [
+      {
+        "@id": "http://example.org/dream-ontology#Claim"
+      }
+    ]
+  },
+  {
+    "@id": "_:Nddb01bbbffea4bf3ad3acda47431e5d5",
+    "http://www.w3.org/ns/shacl#class": [
+      {
+        "@id": "http://example.org/dream-ontology#NarrativeEntity"
+      }
+    ],
+    "http://www.w3.org/ns/shacl#minCount": [
+      {
+        "@value": 1
+      }
+    ],
+    "http://www.w3.org/ns/shacl#path": [
+      {
+        "@id": "http://example.org/dream-ontology#isAbout"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#TwinPeaksTown",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#Place"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class Place."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Twin Peaks Town"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#CD_TwinPeaks_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LD_TwinPeaks_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#RO_TwinPeaks_StatusClaim"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#non-existant",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class",
+      "http://www.w3.org/2002/07/owl#NamedIndividual"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "non existant is a specialized kind of Reality Status."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "non-existant"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://example.org/dream-ontology#RealityStatus"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#RealityStatusClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Reality Status Claim is a specialized kind of Claim."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "reality status claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://example.org/dream-ontology#Claim"
+      },
+      {
+        "@id": "_:N8634b061cb13486b9149d2afba65be39"
+      }
+    ]
+  },
+  {
+    "@id": "_:N8634b061cb13486b9149d2afba65be39",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Restriction"
+    ],
+    "http://www.w3.org/2002/07/owl#onProperty": [
+      {
+        "@id": "http://example.org/dream-ontology#assignsStatus"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#someValuesFrom": [
+      {
+        "@id": "http://example.org/dream-ontology#RealityStatus"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#real",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class",
+      "http://www.w3.org/2002/07/owl#NamedIndividual"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "real is a specialized kind of Reality Status."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "real"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://example.org/dream-ontology#RealityStatus"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#CD_Rule_02",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#Claim",
+      "http://example.org/dream-ontology#TheoryRuleClaim"
+    ],
+    "http://example.org/dream-ontology#ruleCategory": [
+      {
+        "@value": "TemporalAssumptions"
+      }
+    ],
+    "http://example.org/dream-ontology#ruleText": [
+      {
+        "@value": "Temporal instability, looping, and fragmented continuity are natural consequences of dream-based narration."
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#RealityOverlap",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Reality Overlap is a specialized kind of Theory."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "reality overlap"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://example.org/dream-ontology#Theory"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Ontology"
+    ],
+    "http://example.org/dream-ontology#competencyQuestion": [
+      {
+        "@value": "Under CooperDreamTheory, what RealityStatus is assigned to BOB?"
+      },
+      {
+        "@value": "Where do two theories disagree on the RealityStatus of the same narrative entity?"
+      },
+      {
+        "@value": "Which claims are about LauraMurderEvent?"
+      },
+      {
+        "@value": "Which claims are asserted by each theory?"
+      },
+      {
+        "@value": "Which claims identify a dreamer, and who is the dreamer?"
+      },
+      {
+        "@value": "Which entities are assigned projection in any theory?"
+      },
+      {
+        "@value": "Which entities are uncertain under RealityOverlapTheory?"
+      },
+      {
+        "@value": "Which theories classify TwinPeaksTown as dream?"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "This ontology models interpretive theories about Twin Peaks by separating narrative entities (Person, Place, Event, Realm) from theory-scoped claims. A Theory asserts one or more Claims. Each Claim isAbout a NarrativeEntity and may assign a RealityStatus or specify a dreamer (DreamerClaim). The design supports competing interpretations without forcing a single global truth."
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#versionInfo": [
+      {
+        "@value": "v1.0"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#Realm",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Realm is a specialized kind of Narrative Entity."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "realm"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://example.org/dream-ontology#NarrativeEntity"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#asserts",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "http://www.w3.org/2002/07/owl#AsymmetricProperty",
+      "http://www.w3.org/2002/07/owl#IrreflexiveProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Links a Theory to the Claims it asserts."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/dream-ontology#Theory"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "asserts"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://example.org/dream-ontology#Claim"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#DistributedDreamersClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Distributed Dreamers Claim is a concept in the ontology."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "distributed dreamers claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://example.org/dream-ontology#DreamerClaim"
+      },
+      {
+        "@id": "_:N6a942246619247ec83e85158ebc0e455"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#disjointWith": [
+      {
+        "@id": "http://example.org/dream-ontology#SingleDreamerClaim"
+      }
+    ]
+  },
+  {
+    "@id": "_:N6a942246619247ec83e85158ebc0e455",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Restriction"
+    ],
+    "http://www.w3.org/2002/07/owl#minQualifiedCardinality": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+        "@value": "2"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#onClass": [
+      {
+        "@id": "http://example.org/dream-ontology#Person"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#onProperty": [
+      {
+        "@id": "http://example.org/dream-ontology#hasDreamer"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#CD_Doppelganger_StatusShiftClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#StatusShiftClaim"
+    ],
+    "http://example.org/dream-ontology#assignsStatus": [
+      {
+        "@id": "http://example.org/dream-ontology#dream"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#real"
+      }
+    ],
+    "http://example.org/dream-ontology#isAbout": [
+      {
+        "@id": "http://example.org/dream-ontology#CooperDoppelgangerEncounterEvent"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class StatusShiftClaim."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "CD: Doppelganger Status Shift Claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#CooperDoppelgangerEncounterEvent"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#CooperDreamTheory"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#Claim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "_:Na198afaef03744b88aa4b237718a9142"
+      }
+    ]
+  },
+  {
+    "@id": "_:Na198afaef03744b88aa4b237718a9142",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Restriction"
+    ],
+    "http://www.w3.org/2002/07/owl#onProperty": [
+      {
+        "@id": "http://example.org/dream-ontology#isAbout"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#someValuesFrom": [
+      {
+        "@id": "http://example.org/dream-ontology#NarrativeEntity"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#LD_Rule_02",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#Claim",
+      "http://example.org/dream-ontology#TheoryRuleClaim"
+    ],
+    "http://example.org/dream-ontology#ruleCategory": [
+      {
+        "@value": "TemporalAssumptions"
+      }
+    ],
+    "http://example.org/dream-ontology#ruleText": [
+      {
+        "@value": "Time is non-linear and subjective; looping, forgetting, and narrative resets are expected features of the dream structure."
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#RealityOverlapTheory",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#RealityOverlap",
+      "http://example.org/dream-ontology#Theory"
+    ],
+    "http://example.org/dream-ontology#asserts": [
+      {
+        "@id": "http://example.org/dream-ontology#RO_BOB_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#RO_BlackLodge_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#RO_Cooper_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#RO_Doppelganger_HybridStatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#RO_Laura_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#RO_Leland_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#RO_Murder_HybridStatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#RO_Rule_01"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#RO_Rule_02"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#RO_TwinPeaks_StatusClaim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class RealityOverlap."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Reality Overlap Theory"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#RO_BOB_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#RO_BlackLodge_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#RO_Cooper_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#RO_Doppelganger_HybridStatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#RO_Laura_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#RO_Leland_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#RO_Murder_HybridStatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#RO_TwinPeaks_StatusClaim"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#uncertain",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class",
+      "http://www.w3.org/2002/07/owl#NamedIndividual"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "uncertain is a specialized kind of Reality Status."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "uncertain"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://example.org/dream-ontology#RealityStatus"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#DaleCooper",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#Person"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class Person."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Dale Cooper"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#CD_Cooper_SingleDreamerClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#CD_Cooper_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LD_Cooper_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#RO_Cooper_StatusClaim"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#CD_Cooper_StatusClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#HybridStatusClaim"
+    ],
+    "http://example.org/dream-ontology#assignsStatus": [
+      {
+        "@id": "http://example.org/dream-ontology#projection"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#real"
+      }
+    ],
+    "http://example.org/dream-ontology#isAbout": [
+      {
+        "@id": "http://example.org/dream-ontology#DaleCooper"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class HybridStatusClaim."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "CD: Cooper Status Claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#CooperDreamTheory"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#DaleCooper"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#LD_Laura_SingleDreamerClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#DreamerClaim",
+      "http://example.org/dream-ontology#SingleDreamerClaim"
+    ],
+    "http://example.org/dream-ontology#hasDreamer": [
+      {
+        "@id": "http://example.org/dream-ontology#LauraPalmer"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class SingleDreamerClaim."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "LD: Laura Single Dreamer Claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#LauraDreamTheory"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LauraPalmer"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#LD_BOB_StatusClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#HybridStatusClaim"
+    ],
+    "http://example.org/dream-ontology#assignsStatus": [
+      {
+        "@id": "http://example.org/dream-ontology#non-existant"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#projection"
+      }
+    ],
+    "http://example.org/dream-ontology#isAbout": [
+      {
+        "@id": "http://example.org/dream-ontology#BOB"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class HybridStatusClaim."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "LD: BOB Status Claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#BOB"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LauraDreamTheory"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#LD_Rule_01",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#Claim",
+      "http://example.org/dream-ontology#TheoryRuleClaim"
+    ],
+    "http://example.org/dream-ontology#ruleCategory": [
+      {
+        "@value": "ContradictionHandling"
+      }
+    ],
+    "http://example.org/dream-ontology#ruleText": [
+      {
+        "@value": "Apparent contradictions, repetitions, or inconsistencies are resolved as dream effects such as repression, substitution, or symbolic displacement."
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#DreamerClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Dreamer Claim is a specialized kind of Claim."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "dreamer claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://example.org/dream-ontology#Claim"
+      },
+      {
+        "@id": "_:N6d0f7efdb3824fd9b22ce09b14e351f7"
+      }
+    ]
+  },
+  {
+    "@id": "_:N6d0f7efdb3824fd9b22ce09b14e351f7",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Restriction"
+    ],
+    "http://www.w3.org/2002/07/owl#onProperty": [
+      {
+        "@id": "http://example.org/dream-ontology#hasDreamer"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#someValuesFrom": [
+      {
+        "@id": "http://example.org/dream-ontology#Person"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#NarrativeEntity",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Narrative entity"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#LauraDream",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Laura Dream is a specialized kind of Theory."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "laura-dream"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://example.org/dream-ontology#Theory"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#RO_Leland_StatusClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#HybridStatusClaim"
+    ],
+    "http://example.org/dream-ontology#assignsStatus": [
+      {
+        "@id": "http://example.org/dream-ontology#real"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#uncertain"
+      }
+    ],
+    "http://example.org/dream-ontology#isAbout": [
+      {
+        "@id": "http://example.org/dream-ontology#LelandPalmer"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class HybridStatusClaim."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "RO: Leland Status Claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#LelandPalmer"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#RealityOverlapTheory"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#RO_TwinPeaks_StatusClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#HybridStatusClaim"
+    ],
+    "http://example.org/dream-ontology#assignsStatus": [
+      {
+        "@id": "http://example.org/dream-ontology#dream"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#real"
+      }
+    ],
+    "http://example.org/dream-ontology#isAbout": [
+      {
+        "@id": "http://example.org/dream-ontology#TwinPeaksTown"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class HybridStatusClaim."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "RO: Twin Peaks Status Claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#RealityOverlapTheory"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#TwinPeaksTown"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#DreamerExistenceClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Dreamer Existence Claim is a concept in the ontology."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "dreamer existence claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://example.org/dream-ontology#DreamerClaim"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#RealityStatus",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Reality status"
+      }
+    ]
+  },
+  {
+    "@id": "http://www.w3.org/ns/shacl#minCount",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#AnnotationProperty"
+    ]
+  },
+  {
+    "@id": "http://www.w3.org/ns/shacl#targetClass",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#AnnotationProperty"
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#LelandPalmer",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#Person"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class Person."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Leland Palmer"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#CD_Leland_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LD_Leland_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#RO_Leland_StatusClaim"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#LD_Laura_StatusClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#HybridStatusClaim"
+    ],
+    "http://example.org/dream-ontology#assignsStatus": [
+      {
+        "@id": "http://example.org/dream-ontology#projection"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#real"
+      }
+    ],
+    "http://example.org/dream-ontology#isAbout": [
+      {
+        "@id": "http://example.org/dream-ontology#LauraPalmer"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class HybridStatusClaim."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "LD: Laura Status Claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#LauraDreamTheory"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LauraPalmer"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#CD_Murder_StatusClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#RealityStatusClaim"
+    ],
+    "http://example.org/dream-ontology#assignsStatus": [
+      {
+        "@id": "http://example.org/dream-ontology#dream"
+      }
+    ],
+    "http://example.org/dream-ontology#isAbout": [
+      {
+        "@id": "http://example.org/dream-ontology#LauraMurderEvent"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class RealityStatusClaim."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "CD: Murder Status Claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#CooperDreamTheory"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LauraMurderEvent"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#StatusShiftClaimShape",
+    "http://www.w3.org/ns/shacl#property": [
+      {
+        "@id": "_:Na2725142f7984da1bb4cda79326e14a3"
+      }
+    ],
+    "http://www.w3.org/ns/shacl#targetClass": [
+      {
+        "@id": "http://example.org/dream-ontology#StatusShiftClaim"
+      }
+    ]
+  },
+  {
+    "@id": "_:Na2725142f7984da1bb4cda79326e14a3",
+    "http://www.w3.org/ns/shacl#class": [
+      {
+        "@id": "http://example.org/dream-ontology#RealityStatus"
+      }
+    ],
+    "http://www.w3.org/ns/shacl#minCount": [
+      {
+        "@value": 2
+      }
+    ],
+    "http://www.w3.org/ns/shacl#path": [
+      {
+        "@id": "http://example.org/dream-ontology#assignsStatus"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#LD_TwinPeaks_StatusClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#HybridStatusClaim"
+    ],
+    "http://example.org/dream-ontology#assignsStatus": [
+      {
+        "@id": "http://example.org/dream-ontology#uncertain"
+      }
+    ],
+    "http://example.org/dream-ontology#isAbout": [
+      {
+        "@id": "http://example.org/dream-ontology#TwinPeaksTown"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class HybridStatusClaim."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "LD: Twin Peaks Status Claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#LauraDreamTheory"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#TwinPeaksTown"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#RO_Murder_HybridStatusClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#HybridStatusClaim"
+    ],
+    "http://example.org/dream-ontology#assignsStatus": [
+      {
+        "@id": "http://example.org/dream-ontology#dream"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#real"
+      }
+    ],
+    "http://example.org/dream-ontology#isAbout": [
+      {
+        "@id": "http://example.org/dream-ontology#LauraMurderEvent"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class HybridStatusClaim."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "RO: Murder Hybrid Status Claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#LauraMurderEvent"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#RealityOverlapTheory"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#CD_BlackLodge_StatusClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#RealityStatusClaim"
+    ],
+    "http://example.org/dream-ontology#assignsStatus": [
+      {
+        "@id": "http://example.org/dream-ontology#dream"
+      }
+    ],
+    "http://example.org/dream-ontology#isAbout": [
+      {
+        "@id": "http://example.org/dream-ontology#BlackLodge"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class RealityStatusClaim."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "CD: Black Lodge Status Claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#BlackLodge"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#CooperDreamTheory"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#CD_Leland_StatusClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#RealityStatusClaim"
+    ],
+    "http://example.org/dream-ontology#assignsStatus": [
+      {
+        "@id": "http://example.org/dream-ontology#projection"
+      }
+    ],
+    "http://example.org/dream-ontology#isAbout": [
+      {
+        "@id": "http://example.org/dream-ontology#LelandPalmer"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class RealityStatusClaim."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "CD: Leland Status Claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#CooperDreamTheory"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LelandPalmer"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#LD_Leland_StatusClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#HybridStatusClaim"
+    ],
+    "http://example.org/dream-ontology#assignsStatus": [
+      {
+        "@id": "http://example.org/dream-ontology#projection"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#real"
+      }
+    ],
+    "http://example.org/dream-ontology#isAbout": [
+      {
+        "@id": "http://example.org/dream-ontology#LelandPalmer"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class HybridStatusClaim."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "LD: Leland Status Claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#LauraDreamTheory"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LelandPalmer"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#CooperDreamTheory",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#CooperDream",
+      "http://example.org/dream-ontology#Theory"
+    ],
+    "http://example.org/dream-ontology#asserts": [
+      {
+        "@id": "http://example.org/dream-ontology#CD_BOB_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#CD_BlackLodge_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#CD_Cooper_SingleDreamerClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#CD_Cooper_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#CD_Doppelganger_StatusShiftClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#CD_Laura_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#CD_Leland_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#CD_Murder_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#CD_Rule_01"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#CD_Rule_02"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#CD_TwinPeaks_StatusClaim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class CooperDream."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Cooper Dream Theory"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#CD_BOB_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#CD_BlackLodge_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#CD_Cooper_SingleDreamerClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#CD_Cooper_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#CD_Doppelganger_StatusShiftClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#CD_Laura_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#CD_Leland_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#CD_Murder_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#CD_TwinPeaks_StatusClaim"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#RO_Rule_02",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#Claim",
+      "http://example.org/dream-ontology#TheoryRuleClaim"
+    ],
+    "http://example.org/dream-ontology#ruleCategory": [
+      {
+        "@value": "TemporalAssumptions"
+      }
+    ],
+    "http://example.org/dream-ontology#ruleText": [
+      {
+        "@value": "Narrative time is not globally linear. While everyday sequences may appear chronological, dream–reality merging produces temporal instability, repetition, and discontinuity."
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#Place",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Place is a specialized kind of Narrative Entity."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "place"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://example.org/dream-ontology#NarrativeEntity"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#disjointWith": [
+      {
+        "@id": "http://example.org/dream-ontology#Realm"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#LauraDreamTheory",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#LauraDream",
+      "http://example.org/dream-ontology#Theory"
+    ],
+    "http://example.org/dream-ontology#asserts": [
+      {
+        "@id": "http://example.org/dream-ontology#LD_BOB_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LD_BlackLodge_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LD_Cooper_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LD_Doppelganger_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LD_Laura_SingleDreamerClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LD_Laura_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LD_Leland_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LD_Murder_StatusShiftClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LD_Rule_01"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LD_Rule_02"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LD_TwinPeaks_StatusClaim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class LauraDream."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Laura Dream Theory"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#LD_BOB_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LD_BlackLodge_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LD_Cooper_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LD_Doppelganger_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LD_Laura_SingleDreamerClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LD_Laura_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LD_Leland_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LD_Murder_StatusShiftClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LD_TwinPeaks_StatusClaim"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#LD_Cooper_StatusClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#RealityStatusClaim"
+    ],
+    "http://example.org/dream-ontology#assignsStatus": [
+      {
+        "@id": "http://example.org/dream-ontology#projection"
+      }
+    ],
+    "http://example.org/dream-ontology#isAbout": [
+      {
+        "@id": "http://example.org/dream-ontology#DaleCooper"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class RealityStatusClaim."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "LD: Cooper Status Claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#DaleCooper"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LauraDreamTheory"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#LD_Doppelganger_StatusClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#RealityStatusClaim"
+    ],
+    "http://example.org/dream-ontology#assignsStatus": [
+      {
+        "@id": "http://example.org/dream-ontology#dream"
+      }
+    ],
+    "http://example.org/dream-ontology#isAbout": [
+      {
+        "@id": "http://example.org/dream-ontology#CooperDoppelgangerEncounterEvent"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class RealityStatusClaim."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "LD: Doppelganger Status Claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#CooperDoppelgangerEncounterEvent"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LauraDreamTheory"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#RO_Laura_StatusClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#HybridStatusClaim"
+    ],
+    "http://example.org/dream-ontology#assignsStatus": [
+      {
+        "@id": "http://example.org/dream-ontology#uncertain"
+      }
+    ],
+    "http://example.org/dream-ontology#isAbout": [
+      {
+        "@id": "http://example.org/dream-ontology#LauraPalmer"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class HybridStatusClaim."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "RO: Laura Status Claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#LauraPalmer"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#RealityOverlapTheory"
+      }
+    ]
+  },
+  {
+    "@id": "http://www.w3.org/ns/shacl#property",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#AnnotationProperty"
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#CooperDream",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Cooper Dream is a specialized kind of Theory."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "cooper-dream"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://example.org/dream-ontology#Theory"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#ruleCategory",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Category label for a theory rule claim."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/dream-ontology#TheoryRuleClaim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "rule category"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#string"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#CD_TwinPeaks_StatusClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#RealityStatusClaim"
+    ],
+    "http://example.org/dream-ontology#assignsStatus": [
+      {
+        "@id": "http://example.org/dream-ontology#dream"
+      }
+    ],
+    "http://example.org/dream-ontology#isAbout": [
+      {
+        "@id": "http://example.org/dream-ontology#TwinPeaksTown"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class RealityStatusClaim."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "CD: Twin Peaks Status Claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#CooperDreamTheory"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#TwinPeaksTown"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#projection",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class",
+      "http://www.w3.org/2002/07/owl#NamedIndividual"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "projection is a specialized kind of Reality Status."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "projection"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://example.org/dream-ontology#RealityStatus"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#RO_Cooper_StatusClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#HybridStatusClaim"
+    ],
+    "http://example.org/dream-ontology#assignsStatus": [
+      {
+        "@id": "http://example.org/dream-ontology#uncertain"
+      }
+    ],
+    "http://example.org/dream-ontology#isAbout": [
+      {
+        "@id": "http://example.org/dream-ontology#DaleCooper"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class HybridStatusClaim."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "RO: Cooper Status Claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#DaleCooper"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#RealityOverlapTheory"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#BOB",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#Person"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class Person."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "BOB"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#CD_BOB_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LD_BOB_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#RO_BOB_StatusClaim"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#StatusShiftClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Status Shift Claim is a concept in the ontology."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "status shift claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://example.org/dream-ontology#RealityStatusClaim"
+      },
+      {
+        "@id": "_:Nd99803c59c0d412e80329d54d8dc8607"
+      }
+    ]
+  },
+  {
+    "@id": "_:Nd99803c59c0d412e80329d54d8dc8607",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Restriction"
+    ],
+    "http://www.w3.org/2002/07/owl#minQualifiedCardinality": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+        "@value": "2"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#onClass": [
+      {
+        "@id": "http://example.org/dream-ontology#RealityStatus"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#onProperty": [
+      {
+        "@id": "http://example.org/dream-ontology#assignsStatus"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#isAbout",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "http://www.w3.org/2002/07/owl#AsymmetricProperty",
+      "http://www.w3.org/2002/07/owl#IrreflexiveProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Links a Claim to the NarrativeEntity it concerns."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/dream-ontology#Claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "is about"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://example.org/dream-ontology#NarrativeEntity"
+      }
+    ]
+  },
+  {
+    "@id": "http://www.w3.org/ns/shacl#path",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#AnnotationProperty"
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#RO_Doppelganger_HybridStatusClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#HybridStatusClaim"
+    ],
+    "http://example.org/dream-ontology#assignsStatus": [
+      {
+        "@id": "http://example.org/dream-ontology#dream"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#real"
+      }
+    ],
+    "http://example.org/dream-ontology#isAbout": [
+      {
+        "@id": "http://example.org/dream-ontology#CooperDoppelgangerEncounterEvent"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class HybridStatusClaim."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "RO: Doppelganger Hybrid Status Claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#CooperDoppelgangerEncounterEvent"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#RealityOverlapTheory"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#Person",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Person is a specialized kind of Narrative Entity."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "person"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://example.org/dream-ontology#NarrativeEntity"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#disjointWith": [
+      {
+        "@id": "http://example.org/dream-ontology#Place"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#Realm"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#LD_Murder_StatusShiftClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#StatusShiftClaim"
+    ],
+    "http://example.org/dream-ontology#assignsStatus": [
+      {
+        "@id": "http://example.org/dream-ontology#projection"
+      }
+    ],
+    "http://example.org/dream-ontology#isAbout": [
+      {
+        "@id": "http://example.org/dream-ontology#LauraMurderEvent"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class StatusShiftClaim."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "LD: Murder Status Shift Claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#LauraDreamTheory"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LauraMurderEvent"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#RO_Rule_01",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#Claim",
+      "http://example.org/dream-ontology#TheoryRuleClaim"
+    ],
+    "http://example.org/dream-ontology#ruleCategory": [
+      {
+        "@value": "ContradictionHandling"
+      }
+    ],
+    "http://example.org/dream-ontology#ruleText": [
+      {
+        "@value": "Contradictions and paradoxes are meaningful features of the narrative rather than problems requiring resolution."
+      }
+    ]
+  },
+  {
+    "@id": "http://www.w3.org/ns/shacl#maxCount",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#AnnotationProperty"
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#competencyQuestion",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#AnnotationProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Competency questions the ontology should be able to answer."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "competency question"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#LauraPalmer",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#Person"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class Person."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Laura Palmer"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#CD_Laura_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LD_Laura_SingleDreamerClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LD_Laura_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#RO_Laura_StatusClaim"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#CD_Laura_StatusClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#RealityStatusClaim"
+    ],
+    "http://example.org/dream-ontology#assignsStatus": [
+      {
+        "@id": "http://example.org/dream-ontology#dream"
+      }
+    ],
+    "http://example.org/dream-ontology#isAbout": [
+      {
+        "@id": "http://example.org/dream-ontology#LauraPalmer"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class RealityStatusClaim."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "CD: Laura Status Claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#CooperDreamTheory"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LauraPalmer"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#Theory",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Theory"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#CD_BOB_StatusClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#RealityStatusClaim"
+    ],
+    "http://example.org/dream-ontology#assignsStatus": [
+      {
+        "@id": "http://example.org/dream-ontology#dream"
+      }
+    ],
+    "http://example.org/dream-ontology#isAbout": [
+      {
+        "@id": "http://example.org/dream-ontology#BOB"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class RealityStatusClaim."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "CD: BOB Status Claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#BOB"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#CooperDreamTheory"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#LauraMurderEvent",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#Event"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class Event."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Laura Murder Event"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#CD_Murder_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LD_Murder_StatusShiftClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#RO_Murder_HybridStatusClaim"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#assignsStatus",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty",
+      "http://www.w3.org/2002/07/owl#AsymmetricProperty",
+      "http://www.w3.org/2002/07/owl#IrreflexiveProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Links a RealityStatusClaim to a RealityStatus value it assigns."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://example.org/dream-ontology#RealityStatusClaim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "assigns status"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://example.org/dream-ontology#RealityStatus"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#BinaryStatusClaimShape",
+    "http://www.w3.org/ns/shacl#property": [
+      {
+        "@id": "_:Ne624d82f1f204cceb3eb057242097739"
+      }
+    ],
+    "http://www.w3.org/ns/shacl#targetClass": [
+      {
+        "@id": "http://example.org/dream-ontology#BinaryStatusClaim"
+      }
+    ]
+  },
+  {
+    "@id": "_:Ne624d82f1f204cceb3eb057242097739",
+    "http://www.w3.org/ns/shacl#class": [
+      {
+        "@id": "http://example.org/dream-ontology#RealityStatus"
+      }
+    ],
+    "http://www.w3.org/ns/shacl#maxCount": [
+      {
+        "@value": 1
+      }
+    ],
+    "http://www.w3.org/ns/shacl#minCount": [
+      {
+        "@value": 1
+      }
+    ],
+    "http://www.w3.org/ns/shacl#path": [
+      {
+        "@id": "http://example.org/dream-ontology#assignsStatus"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#SingleDreamerClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Single Dreamer Claim is a concept in the ontology."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "single dreamer claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://example.org/dream-ontology#DreamerClaim"
+      },
+      {
+        "@id": "_:N7e8fe6ac599847899b30a649cde34c2c"
+      }
+    ]
+  },
+  {
+    "@id": "_:N7e8fe6ac599847899b30a649cde34c2c",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Restriction"
+    ],
+    "http://www.w3.org/2002/07/owl#onClass": [
+      {
+        "@id": "http://example.org/dream-ontology#Person"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#onProperty": [
+      {
+        "@id": "http://example.org/dream-ontology#hasDreamer"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#qualifiedCardinality": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+        "@value": "1"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#LD_BlackLodge_StatusClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#RealityStatusClaim"
+    ],
+    "http://example.org/dream-ontology#assignsStatus": [
+      {
+        "@id": "http://example.org/dream-ontology#dream"
+      }
+    ],
+    "http://example.org/dream-ontology#isAbout": [
+      {
+        "@id": "http://example.org/dream-ontology#BlackLodge"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class RealityStatusClaim."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "LD: Black Lodge Status Claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#BlackLodge"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LauraDreamTheory"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#Event",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Event is a specialized kind of Narrative Entity."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "event"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://example.org/dream-ontology#NarrativeEntity"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#disjointWith": [
+      {
+        "@id": "http://example.org/dream-ontology#Person"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#Place"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#Realm"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#RO_BlackLodge_StatusClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#HybridStatusClaim"
+    ],
+    "http://example.org/dream-ontology#asserts": [
+      {
+        "@id": "http://example.org/dream-ontology#RO_Rule_02"
+      }
+    ],
+    "http://example.org/dream-ontology#assignsStatus": [
+      {
+        "@id": "http://example.org/dream-ontology#uncertain"
+      }
+    ],
+    "http://example.org/dream-ontology#isAbout": [
+      {
+        "@id": "http://example.org/dream-ontology#BlackLodge"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class HybridStatusClaim."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "RO: Black Lodge Status Claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#BlackLodge"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#RealityOverlapTheory"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#TheoryRuleClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Theory Rule Claim is a specialized kind of Claim."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "theory rule claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://example.org/dream-ontology#Claim"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#BinaryStatusClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Binary Status Claim is a concept in the ontology."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "binary status claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://example.org/dream-ontology#RealityStatusClaim"
+      },
+      {
+        "@id": "_:Nf582187f8fcc4b31a463a033224e2399"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#disjointWith": [
+      {
+        "@id": "http://example.org/dream-ontology#HybridStatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#StatusShiftClaim"
+      }
+    ]
+  },
+  {
+    "@id": "_:Nf582187f8fcc4b31a463a033224e2399",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Restriction"
+    ],
+    "http://www.w3.org/2002/07/owl#onClass": [
+      {
+        "@id": "http://example.org/dream-ontology#RealityStatus"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#onProperty": [
+      {
+        "@id": "http://example.org/dream-ontology#assignsStatus"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#qualifiedCardinality": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+        "@value": "1"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#CD_Cooper_SingleDreamerClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#DreamerClaim",
+      "http://example.org/dream-ontology#SingleDreamerClaim"
+    ],
+    "http://example.org/dream-ontology#hasDreamer": [
+      {
+        "@id": "http://example.org/dream-ontology#DaleCooper"
+      }
+    ],
+    "http://example.org/dream-ontology#isAbout": [
+      {
+        "@id": "http://example.org/dream-ontology#DaleCooper"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class SingleDreamerClaim."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "CD: Cooper Single Dreamer Claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#CooperDreamTheory"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#DaleCooper"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#dream",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class",
+      "http://www.w3.org/2002/07/owl#NamedIndividual"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "dream is a specialized kind of Reality Status."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "dream"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://example.org/dream-ontology#RealityStatus"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#RO_BOB_StatusClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#HybridStatusClaim"
+    ],
+    "http://example.org/dream-ontology#assignsStatus": [
+      {
+        "@id": "http://example.org/dream-ontology#dream"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#real"
+      }
+    ],
+    "http://example.org/dream-ontology#isAbout": [
+      {
+        "@id": "http://example.org/dream-ontology#BOB"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class HybridStatusClaim."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "RO: BOB Status Claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#BOB"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#RealityOverlapTheory"
+      }
+    ]
+  },
+  {
+    "@id": "http://www.w3.org/ns/shacl#class",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#AnnotationProperty"
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#HybridStatusClaim",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Hybrid Status Claim is a concept in the ontology."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "hybrid status claim"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+      {
+        "@id": "http://example.org/dream-ontology#RealityStatusClaim"
+      },
+      {
+        "@id": "_:N202230d838874afdb126afbcd904b291"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#disjointWith": [
+      {
+        "@id": "http://example.org/dream-ontology#StatusShiftClaim"
+      }
+    ]
+  },
+  {
+    "@id": "_:N202230d838874afdb126afbcd904b291",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Restriction"
+    ],
+    "http://www.w3.org/2002/07/owl#minQualifiedCardinality": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+        "@value": "2"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#onClass": [
+      {
+        "@id": "http://example.org/dream-ontology#RealityStatus"
+      }
+    ],
+    "http://www.w3.org/2002/07/owl#onProperty": [
+      {
+        "@id": "http://example.org/dream-ontology#assignsStatus"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#CooperDoppelgangerEncounterEvent",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://example.org/dream-ontology#Event"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Individual of class Event."
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Cooper Doppelganger Encounter Event"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#seeAlso": [
+      {
+        "@id": "http://example.org/dream-ontology#CD_Doppelganger_StatusShiftClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#LD_Doppelganger_StatusClaim"
+      },
+      {
+        "@id": "http://example.org/dream-ontology#RO_Doppelganger_HybridStatusClaim"
+      }
+    ]
+  },
+  {
+    "@id": "http://example.org/dream-ontology#DistributedDreamersClaimShape",
+    "http://www.w3.org/ns/shacl#property": [
+      {
+        "@id": "_:N1eaaa69b0c9f41379700a9b565d75831"
+      }
+    ],
+    "http://www.w3.org/ns/shacl#targetClass": [
+      {
+        "@id": "http://example.org/dream-ontology#DistributedDreamersClaim"
+      }
+    ]
+  },
+  {
+    "@id": "_:N1eaaa69b0c9f41379700a9b565d75831",
+    "http://www.w3.org/ns/shacl#class": [
+      {
+        "@id": "http://example.org/dream-ontology#Person"
+      }
+    ],
+    "http://www.w3.org/ns/shacl#minCount": [
+      {
+        "@value": 2
+      }
+    ],
+    "http://www.w3.org/ns/shacl#path": [
+      {
+        "@id": "http://example.org/dream-ontology#hasDreamer"
+      }
+    ]
+  }
+]
