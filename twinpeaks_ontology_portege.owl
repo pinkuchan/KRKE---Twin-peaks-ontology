@@ -8,7 +8,7 @@
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
-    <owl:Ontology rdf:about="http://example.org/dream-ontology">
+    <owl:Ontology rdf:about="https://github.com/pinkuchan/KRKE---Twin-peaks-ontology/blob/main/Portege-TwinPeaks.owl">
         <competencyQuestion>Under CooperDreamTheory, what RealityStatus is assigned to BOB?</competencyQuestion>
         <competencyQuestion>Where do two theories disagree on the RealityStatus of the same narrative entity?</competencyQuestion>
         <competencyQuestion>Which claims are about LauraMurderEvent?</competencyQuestion>
@@ -491,12 +491,6 @@
     
 
 
-    <!-- http://www.w3.org/ns/shacl#NodeShape -->
-
-    <owl:Class rdf:about="http://www.w3.org/ns/shacl#NodeShape"/>
-    
-
-
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -517,23 +511,6 @@
         <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#CD_BOB_StatusClaim"/>
         <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LD_BOB_StatusClaim"/>
         <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#RO_BOB_StatusClaim"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://example.org/dream-ontology#BinaryStatusClaimShape -->
-
-    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#BinaryStatusClaimShape">
-        <rdf:type rdf:resource="http://www.w3.org/ns/shacl#NodeShape"/>
-        <sh:property>
-            <rdf:Description>
-                <sh:class rdf:resource="http://example.org/dream-ontology#RealityStatus"/>
-                <sh:maxCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:maxCount>
-                <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:minCount>
-                <sh:path rdf:resource="http://example.org/dream-ontology#assignsStatus"/>
-            </rdf:Description>
-        </sh:property>
-        <sh:targetClass rdf:resource="http://example.org/dream-ontology#BinaryStatusClaim"/>
     </owl:NamedIndividual>
     
 
@@ -708,22 +685,6 @@
     
 
 
-    <!-- http://example.org/dream-ontology#ClaimAboutShape -->
-
-    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#ClaimAboutShape">
-        <rdf:type rdf:resource="http://www.w3.org/ns/shacl#NodeShape"/>
-        <sh:property>
-            <rdf:Description>
-                <sh:class rdf:resource="http://example.org/dream-ontology#NarrativeEntity"/>
-                <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:minCount>
-                <sh:path rdf:resource="http://example.org/dream-ontology#isAbout"/>
-            </rdf:Description>
-        </sh:property>
-        <sh:targetClass rdf:resource="http://example.org/dream-ontology#Claim"/>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://example.org/dream-ontology#CooperDoppelgangerEncounterEvent -->
 
     <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#CooperDoppelgangerEncounterEvent">
@@ -780,38 +741,6 @@
         <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#CD_Cooper_StatusClaim"/>
         <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#LD_Cooper_StatusClaim"/>
         <rdfs:seeAlso rdf:resource="http://example.org/dream-ontology#RO_Cooper_StatusClaim"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://example.org/dream-ontology#DistributedDreamersClaimShape -->
-
-    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#DistributedDreamersClaimShape">
-        <rdf:type rdf:resource="http://www.w3.org/ns/shacl#NodeShape"/>
-        <sh:property>
-            <rdf:Description>
-                <sh:class rdf:resource="http://example.org/dream-ontology#Person"/>
-                <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</sh:minCount>
-                <sh:path rdf:resource="http://example.org/dream-ontology#hasDreamer"/>
-            </rdf:Description>
-        </sh:property>
-        <sh:targetClass rdf:resource="http://example.org/dream-ontology#DistributedDreamersClaim"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://example.org/dream-ontology#HybridStatusClaimShape -->
-
-    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#HybridStatusClaimShape">
-        <rdf:type rdf:resource="http://www.w3.org/ns/shacl#NodeShape"/>
-        <sh:property>
-            <rdf:Description>
-                <sh:class rdf:resource="http://example.org/dream-ontology#RealityStatus"/>
-                <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</sh:minCount>
-                <sh:path rdf:resource="http://example.org/dream-ontology#assignsStatus"/>
-            </rdf:Description>
-        </sh:property>
-        <sh:targetClass rdf:resource="http://example.org/dream-ontology#HybridStatusClaim"/>
     </owl:NamedIndividual>
     
 
@@ -1222,39 +1151,6 @@
     
 
 
-    <!-- http://example.org/dream-ontology#SingleDreamerClaimShape -->
-
-    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#SingleDreamerClaimShape">
-        <rdf:type rdf:resource="http://www.w3.org/ns/shacl#NodeShape"/>
-        <sh:property>
-            <rdf:Description>
-                <sh:class rdf:resource="http://example.org/dream-ontology#Person"/>
-                <sh:maxCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:maxCount>
-                <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:minCount>
-                <sh:path rdf:resource="http://example.org/dream-ontology#hasDreamer"/>
-            </rdf:Description>
-        </sh:property>
-        <sh:targetClass rdf:resource="http://example.org/dream-ontology#SingleDreamerClaim"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://example.org/dream-ontology#StatusShiftClaimShape -->
-
-    <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#StatusShiftClaimShape">
-        <rdf:type rdf:resource="http://www.w3.org/ns/shacl#NodeShape"/>
-        <sh:property>
-            <rdf:Description>
-                <sh:class rdf:resource="http://example.org/dream-ontology#RealityStatus"/>
-                <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</sh:minCount>
-                <sh:path rdf:resource="http://example.org/dream-ontology#assignsStatus"/>
-            </rdf:Description>
-        </sh:property>
-        <sh:targetClass rdf:resource="http://example.org/dream-ontology#StatusShiftClaim"/>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://example.org/dream-ontology#TwinPeaksTown -->
 
     <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#TwinPeaksTown">
@@ -1295,6 +1191,38 @@
     <!-- http://example.org/dream-ontology#uncertain -->
 
     <owl:NamedIndividual rdf:about="http://example.org/dream-ontology#uncertain"/>
+    <rdf:Description>
+        <sh:class rdf:resource="http://example.org/dream-ontology#NarrativeEntity"/>
+        <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:minCount>
+        <sh:path rdf:resource="http://example.org/dream-ontology#isAbout"/>
+    </rdf:Description>
+    <rdf:Description>
+        <sh:class rdf:resource="http://example.org/dream-ontology#Person"/>
+        <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</sh:minCount>
+        <sh:path rdf:resource="http://example.org/dream-ontology#hasDreamer"/>
+    </rdf:Description>
+    <rdf:Description>
+        <sh:class rdf:resource="http://example.org/dream-ontology#Person"/>
+        <sh:maxCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:maxCount>
+        <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:minCount>
+        <sh:path rdf:resource="http://example.org/dream-ontology#hasDreamer"/>
+    </rdf:Description>
+    <rdf:Description>
+        <sh:class rdf:resource="http://example.org/dream-ontology#RealityStatus"/>
+        <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</sh:minCount>
+        <sh:path rdf:resource="http://example.org/dream-ontology#assignsStatus"/>
+    </rdf:Description>
+    <rdf:Description>
+        <sh:class rdf:resource="http://example.org/dream-ontology#RealityStatus"/>
+        <sh:maxCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:maxCount>
+        <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</sh:minCount>
+        <sh:path rdf:resource="http://example.org/dream-ontology#assignsStatus"/>
+    </rdf:Description>
+    <rdf:Description>
+        <sh:class rdf:resource="http://example.org/dream-ontology#RealityStatus"/>
+        <sh:minCount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</sh:minCount>
+        <sh:path rdf:resource="http://example.org/dream-ontology#assignsStatus"/>
+    </rdf:Description>
     
 
 
